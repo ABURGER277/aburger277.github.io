@@ -34,7 +34,7 @@ const getRecentContent = computed(() => {
     class="container px-4 mx-auto max-w-6xl flex font-gmarket gap-14 antialiased min-h-[82vh]"
   >
     <div class="flex-1">
-      <h1 class="text-xl pb-8 text-[#e60067]">RECENTLY PUBLISHED</h1>
+      <h1 class="text-xl font-bold pb-8 text-[#e60067]">RECENTLY PUBLISHED</h1>
       <div class="space-y-8">
         <!-- <blog-card v-for="n in 7" :key="n" /> -->
         <template v-for="data in getRecentContent" :key="data">
@@ -50,7 +50,7 @@ const getRecentContent = computed(() => {
     </div>
     <div class="basis-1/4">
       <div>
-        <h2 class="text-xl pb-8 text-[#e60067]">TOP CATEGORIES</h2>
+        <h2 class="text-xl font-bold pb-8 text-[#e60067]">TOP CATEGORIES</h2>
         <template v-for="data in getAllTag" :key="data">
           <topic-card :data="data"/>
         </template>

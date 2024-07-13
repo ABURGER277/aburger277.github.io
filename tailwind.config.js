@@ -2,7 +2,12 @@
 export default {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        gmarket: ['GmarketSansTTF', 'sans-serif'],
+        serif:["NanumGothic", "serif"],
+      }
+    },
   },
   plugins: [],
 }

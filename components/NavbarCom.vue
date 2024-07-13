@@ -10,7 +10,7 @@ const activeNavbar = computed(() => {
 </script>
 
 <template>
-  <header class="sticky top-0 p-3 bg-[#a2d9ff] font-gmarket">
+  <header class="sticky bg-[#a2d9ff] top-0 p-3 font-gmarket">
     <div class="conatiner px-4 mx-auto max-w-6xl flex justify-between">
       <ul class="flex space-x-8 items-center">
         <li>
@@ -19,7 +19,7 @@ const activeNavbar = computed(() => {
             :class="{ 'text-blue-500 border-b-2 border-blue-500 font-bold': activeNavbar === '' }"
             to="/"
           >
-            <img src="/logo.png" style="width: 100px; height: 100px;"/>
+            <img src="/logo.png" style="width: 50px; height: 50px;"/>
           </nuxt-link>
         </li>
         <li>
@@ -57,5 +57,6 @@ const activeNavbar = computed(() => {
         </li>
       </ul>
     </div>
-</header>
+
+  </header>
 </template>

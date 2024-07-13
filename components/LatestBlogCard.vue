@@ -14,7 +14,7 @@ const props = defineProps({
     </nuxt-link>
     <div class="text-xs text-slate-500 pb-3 flex space-x-4">
       <div class="flex items-center space-x-1">
-        <icon name="material-symbols:av-timer" />
+        <icon name="material-symbols:av-timer"/>
         <span class=""> {{ date }} </span>
       </div>
     </div>

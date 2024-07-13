@@ -14,7 +14,7 @@
           Site source on
           <nuxt-link
             target="_blank"
-            to="https://github.com/ABURGER277/aburger.github.io/tree/develop"
+            to="https://github.com/ABURGER277/aburger277.github.io/"
           >
             <icon size="30px" name="uil:github"/>
           </nuxt-link>

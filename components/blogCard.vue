@@ -9,7 +9,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="space-y-2 text-slate-800 my-5 group">
+  <div class="space-y-2 text-slate-800 my-5 p-3 rounded-md group shadow-2xl">
     <!-- <h3 class="text-xl font-semibold group-hover:text-sky-500">
       This is a blog title
     </h3> -->
