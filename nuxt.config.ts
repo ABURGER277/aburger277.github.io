@@ -8,5 +8,14 @@ export default defineNuxtConfig({
     port: 3000,
     host: '0.0.0.0'
   },
+  vite: {
+    server: {
+      hmr: process.env.NODE_ENV !== 'production' ? {
+        protocol: 'ws',
+        host: 'localhost',
+        port: 3000,
+      } : false,
+    }
+  },
   modules: ["@nuxtjs/tailwindcss", "@nuxt/content", "@nuxt/icon", "@nuxt/image"]
 })
