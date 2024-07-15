@@ -17,5 +17,14 @@ export default defineNuxtConfig({
       } : false,
     }
   },
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/content", "@nuxt/icon", "@nuxt/image"]
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/content", "@nuxt/icon", "@nuxt/image"],
+  css: [
+    '@/assets/css/tailwind.css'
+  ],
+  content: {
+    highlight: {
+      // Theme used in all color schemes.
+      theme: 'github-dark'
+    }
+  }
 })

@@ -4,6 +4,7 @@ definePageMeta({
 });
 
 const { data } = await useAsyncData("home", () => queryContent("/").find());
+console.log(data);
 
 const getTopCategory = computed(() => {
   const allPost = data.value || [];
@@ -19,13 +20,14 @@ const getTopCategory = computed(() => {
       path: path
     });
   });
+  console.log('currentObject in tags/index.vue', currentObject);
   return currentObject;
 })
 </script>
 
 <template>
   <div class="container mx-auto max-w-6xl font-gmarket antialiased min-h-[82vh]">
-    <div class="flex justify-between flex-wrap">
+    <div class="flex justify-center flex-wrap">
       <template v-for="data in getTopCategory" :key="data">
         <category-card
           :type="data.type"

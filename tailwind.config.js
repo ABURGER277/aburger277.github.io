@@ -1,9 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  darkMode: 'selector',
+  content: [
+    './components/**/*.{vue,js}',
+    './layouts/**/*.{vue,js}',
+    './pages/**/*.{vue,js}',
+    './plugins/**/*.{js,ts}',
+    './nuxt.config.{js,ts}',
+    './content/**/*.{md,vue}'
+  ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        gmarket: ['GmarketSansTTF', 'sans-serif'],
+        serif:["NanumGothic", "serif"],
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
 
