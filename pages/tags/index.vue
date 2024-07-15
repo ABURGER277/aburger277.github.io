@@ -4,6 +4,7 @@ definePageMeta({
 });
 
 const { data } = await useAsyncData("home", () => queryContent("/").find());
+console.log(data);
 
 const getTopCategory = computed(() => {
   const allPost = data.value || [];
@@ -19,6 +20,7 @@ const getTopCategory = computed(() => {
       path: path
     });
   });
+  console.log('currentObject in tags/index.vue', currentObject);
   return currentObject;
 })
 </script>

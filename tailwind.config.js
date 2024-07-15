@@ -1,6 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  darkMode: 'selector',
+  content: [
+    './components/**/*.{vue,js}',
+    './layouts/**/*.{vue,js}',
+    './pages/**/*.{vue,js}',
+    './plugins/**/*.{js,ts}',
+    './nuxt.config.{js,ts}',
+    './content/**/*.{md,vue}'
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -9,6 +17,8 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
 

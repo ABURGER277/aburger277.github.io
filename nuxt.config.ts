@@ -12,6 +12,12 @@ export default defineNuxtConfig({
     highlight: {
       // Theme used in all color schemes.
       theme: 'github-dark'
+    },
+    watch: {
+      ws: {
+        port: 3000,
+        showURL: true
+      }
     }
   }
 })
