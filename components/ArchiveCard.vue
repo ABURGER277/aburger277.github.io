@@ -19,7 +19,7 @@ const props = defineProps({
           {{ title }}
         </nuxt-link>
         <div class="flex italic text-sm text-slate-600 items-center space-x-2">
-          <icon name="material-symbols:calendar-month" />
+          <icon name="material-symbols:calendar-month"/>
           <p>{{ date }}</p>
           <p>|</p>
           <p>{{ type }}</p>
