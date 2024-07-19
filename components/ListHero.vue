@@ -1,15 +1,15 @@
 <script setup>
 const route = useRoute();
 
-const routeType = computed(() => {
-  return route.params.topic || "";
-})
+// const routeType = computed(() => {
+//   return route.params.topic || "";
+// })
 
-const { data } = await useAsyncData("listHero", () => {queryContent(`/${routeType.value}`).find()});
+// const { data } = await useAsyncData("listHero", () => {queryContent(`/${routeType.value}`).find()});
 
-const typeName = computed(() => {
-  return data.value?.[0]?.type || "";
-})
+// const typeName = computed(() => {
+//   return data.value?.[0]?.type || "";
+// })
 
 const title = computed(() => {
   const path = route.fullPath;

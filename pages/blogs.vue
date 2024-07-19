@@ -1,42 +1,63 @@
 <script setup>
-definePageMeta({
-  layout: "list",
-});
+const {data} = await useAsyncData("index", () => queryContent("/").find());
 
-const {data} = await useAsyncData("blogs", () => queryContent("/").find());
-
-const getAllPost = computed(() => {
+const getAllTag = computed(() => {
   const allPost = data.value || [];
-  const allTypes = allPost.map((post) => {
+  const allTags = allPost.map((post) => post.type);
+  const uniqTag = new Set(allTags);
+  console.log('getUniqueTags', uniqTag);
+  return uniqTag;
+})
+
+const getRecentContent = computed(() => {
+  const allPost = data.value || [];
+  const customizePost = allPost.map((post) => {
     return {
       title: post.title,
-      // description: post.description,
+      description: post.description,
       path: post._path,
-      date: post.date,
-      type: post.type
+      type: post.type,
+      date: post.date
     };
   });
 
-  allTypes.sort(function(a,b) {
+  customizePost.sort(function(a,b) {
     const c = new Date(a.date);
     const d = new Date(b.date);
     return c < d ? 1 : -1;
   });
-  return allTypes;
+  console.log('customize Post in blogs.vue', customizePost);
+  return customizePost;
 });
 </script>
 
 <template>
-  <div class="container mx-auto max-w-6xl font-gmarket antialiased min-h-[82vh]">
-    <div>
-      <template v-for="data in getAllPost" :key="data">
-        <archive-card
-          :title="data.title"
-          :type="data.type"
-          :date="data.date"
-          :path="data.path"
-        />
-      </template>
+  <div
+    class="container px-4 mx-auto max-w-6xl flex font-gmarket gap-14 antialiased min-h-[82vh]"
+  >
+    <div class="basis-1/4">
+      <div>
+        <h2 class="text-xl font-bold pb-8 text-[#e60067]">TOP CATEGORIES</h2>
+        <template v-for="data in getAllTag" :key="data">
+          <topic-card :data="data"/>
+        </template>
+      </div>
     </div>
+    <div class="flex-1">
+      <h1 class="text-xl font-bold pb-8 text-[#e60067]">RECENTLY PUBLISHED</h1>
+      <div class="space-y-8">
+        <!-- <blog-card v-for="n in 7" :key="n" /> -->
+        <template v-for="data in getRecentContent" :key="data">
+          <blog-card
+            :title="data.title"
+            :description="data.description"
+            :path="data.path"
+            :type="data.type"
+            :date="data.date"
+          />
+        </template>
+      </div>
+    </div>
+
   </div>
 </template>
