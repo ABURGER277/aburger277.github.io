@@ -9,18 +9,16 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "TEST2",
-    description: "Vue.js와 Nuxt3를 사용하여 개인 포트폴리오 웹사이트를 제작.",
-    techStack: ["Vue.js"],
-    link: "https://google.com",
-    gitLink: "https://github.com/ABURGER277/aburger277.github.io"
+    title: "TIL",
+    description: "학습한 내용을 찾아보기 쉽게 정리해놓은 아카이브입니다.",
+    techStack: ["Markdown", "Github Actions"],
+    gitLink: "https://github.com/ABURGER277/TIL",
   },
   {
-    title: "TEST3",
-    description: "할 일 관리를 위해 만든 데스크톱 애플리케이션",
-    techStack: ["Electron", "Javascript"],
-    // link: "https://google.com",
-    gitLink: "https://google.com",
+    title: "CSS-Playground",
+    description: "CSS property를 이해하기 위해 각종 실험을 기록한 아카이브입니다.",
+    techStack: ["CSS"],
+    gitLink: "https://github.com/ABURGER277/CSS-Playground",
   },
 ];
 </script>
@@ -31,9 +29,7 @@ const projects: Project[] = [
       <li v-for="(project, index) in projects" :key="index">
         <h3>{{ project.title }}</h3>
         <p>{{ project.description }}</p>
-        <p>
-          <p>사용 기술:</p> {{ project.techStack.join(", ") }}
-        </p>
+        <p>사용 기술: {{ project.techStack.join(", ") }}</p>
         <a v-if="project.link" :href="project.link" target="_blank">
           프로젝트 보기
         </a>
