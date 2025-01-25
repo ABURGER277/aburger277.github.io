@@ -26,20 +26,24 @@ function moveToProject() { mobileMenuFlag.value = false; }
 .desktop-menu {
   display: none;
   background-color: var(--color-primary);
+  border-bottom: 2px solid var(--color-text);
   width: 100%;
   height: 60px;
 }
 ul {
   display: flex;
+  align-items: center;
   height: 100%;
 }
 .desktop-menu-list {
+  font-weight: 900;
   font-size: large;
   flex-grow: 1;
+  letter-spacing: 1.5px;
 }
 .desktop-menu-list:hover {
-  font-weight: 900;
-
+  transform: scale(1.5);
+  transition: transform 1s, background-color 0.3s;
   cursor: pointer;
 }
 </style>
