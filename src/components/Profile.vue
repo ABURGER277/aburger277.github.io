@@ -31,5 +31,6 @@ import profileImg from '../assets/profile_image.jpg'
 <style scoped>
   .profile-img {
     width: 300px;
+    border-radius: 50%;
   }
 </style>

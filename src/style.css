@@ -1,7 +1,9 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.3;
   font-weight: 400;
+
+  cursor: default;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -9,32 +11,49 @@
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  letter-spacing: -0.5px;
+  --color-primary: #3B4F52; /* 기본 메인 색상 */
+  --color-secondary: #5C786E; /* 서브 색상 */
+  --color-accent-1: #577146; /* 강조 색상 2 */
+  --color-accent-2: #3B4E3F; /* 강조 색상 3 */
+  --color-warning: #553F33; /* 경고 색상 */
+  --color-text: rgba(255, 255, 255, 0.87); /* 텍스트 색상 */
+  --color-background: #738E57; /* 배경 색상 */
 }
-a:hover {
-  color: #535bf2;
+#app {
+  width: 100%;
+  text-align: center;
 }
-
-body {
+body{
+  color: var(--color-text);
+  background-color: var(--color-background);
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
+  width: 100%;
   min-height: 100vh;
 }
-
+.div {
+  box-sizing: border-box;
+}
+a {
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: inherit;
+  text-underline-position: auto;
+}
+a:hover {
+  color: var(--color-accent-2);
+}
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -42,30 +61,34 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  color: var(--color-text);
+  background-color: var(--color-primary);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-warning);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
 .card {
   padding: 2em;
 }
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+ul {
+  margin: 0;
+  padding: 0;
 }
-
-@media (prefers-color-scheme: light) {
+li {
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+.icon {
+  fill: var(--color-text);
+}
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -76,4 +99,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

@@ -32,7 +32,7 @@ const projects: Project[] = [
         <h3>{{ project.title }}</h3>
         <p>{{ project.description }}</p>
         <p>
-          <p>사용 기술:</p> {{ project.techStack.join(", ") }}
+          사용 기술: {{ project.techStack.join(", ") }}
         </p>
         <a v-if="project.link" :href="project.link" target="_blank">
           프로젝트 보기
