@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
+    "@types/node": "^22.10.10",
     "@vue/compiler-sfc": "^3.5.13",
     "@vueuse/components": "^12.5.0",
     "@vueuse/core": "^12.5.0",
