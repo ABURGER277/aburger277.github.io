@@ -36,7 +36,8 @@ a {
   text-underline-position: auto;
 }
 a:hover {
-  color: var(--color-accent-2);
+  font-weight: 900;
+  color: var(--color-accent1);
 }
 h1 {
   font-size: 3.2em;
@@ -75,35 +76,4 @@ li {
 }
 .icon {
   fill: var(--color-text);
-}
-
-/* Light Theme */
-[data-theme="light"] {
-  --color-primary: #F0F4F8;
-  --color-secondary: #D9E2EC;
-  --color-accent-1: #BCCCDC;
-  --color-accent-2: #9FB3C8;
-  --color-warning: #FFDD57;
-  --color-text: #2D3748;
-  --color-background: #FFFFFF;
-}
-/* Dark Theme */
-[data-theme="dark"] {
-  --color-primary: #3B4F52;
-  --color-secondary: #5C786E;
-  --color-accent-1: #577146;
-  --color-accent-2: #3B4E3F;
-  --color-warning: #553F33;
-  --color-text: rgba(255, 255, 255, 0.87);
-  --color-background: #242424;
-}
-/* Woody Theme */
-[data-theme="woody"] {
-  --color-primary: #3B4F52;
-  --color-secondary: #5C786E;
-  --color-accent-1: #577146;
-  --color-accent-2: #3B4E3F;
-  --color-warning: #553F33;
-  --color-text: rgba(255, 255, 255, 0.87);
-  --color-background: #738E57;
 }

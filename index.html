@@ -5,18 +5,6 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aburger's</title>
-    <script>
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const savedTheme = localStorage.getItem("theme");
-      const theme = savedTheme || (prefersDark ? "dark" : "light");
-
-      document.documentElement.setAttribute("data-theme", theme);
-
-      window.setTheme = (newTheme) => {
-        document.documentElement.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-      };
-    </script>
   </head>
   <body>
     <div id="app"></div>
