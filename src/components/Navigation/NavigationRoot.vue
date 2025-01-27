@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import NavigationDesktop from './NavigationDesktop.vue';
-import NavigationMobile from './NavigationMobile.vue';
 </script>
 <template>
-  <header>
-    <NavigationMobile class="nav-mobile"/>
-    <NavigationDesktop class="nav-desktop"/>
-  </header>
+<header>
+  <NavigationMobile class="nav-mobile"/>
+  <NavigationDesktop class="nav-desktop"/>
+</header>
 </template>
 <style scoped>
 .nav-mobile, .nav-desktop {

@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { XMarkIcon } from '@heroicons/vue/16/solid';
-import { Bars3Icon } from '@heroicons/vue/16/solid';
-import Divider from '../Common/Divider.vue';
-import { useTheme } from '../../composables/useTheme'
+import { XMarkIcon, Bars3Icon } from '@heroicons/vue/16/solid';
 const { setTheme, themes } = useTheme();
 
 const mobileMenuFlag = ref(false);
 const themeListFlag = ref(false);
 function showNav() { mobileMenuFlag.value = true; }
-function closeNav() { mobileMenuFlag.value = false; }
+function closeNav() { close(); }
 function showThemeList() { themeListFlag.value = true; }
-function moveToCareer() { mobileMenuFlag.value = false; }
-function moveToProfile() { mobileMenuFlag.value = false; }
-function moveToProject() { mobileMenuFlag.value = false; }
+function moveToCareer() { close(); }
+function moveToProfile() { close(); }
+function moveToProject() { close(); }
+
+function close() {
+  mobileMenuFlag.value = false;
+  themeListFlag.value = false;
+}
 
 function selectTheme(themeKey: string) {
   setTheme(themeKey);
@@ -23,8 +24,9 @@ function selectTheme(themeKey: string) {
 </script>
 <template>
   <div>
-    <Bars3Icon v-if="!mobileMenuFlag" class="hamburger-menu" @click="showNav"/>
-    <nav v-if="mobileMenuFlag" class="mobile-menu">
+    <Bars3Icon v-if="!mobileMenuFlag" class="hamburger-menu" @click="showNav" key="hamburger"/>
+    <transition name="fade" mode="out-in">
+    <nav v-if="mobileMenuFlag" class="mobile-menu" key="menu">
       <XMarkIcon class="x-button" @click="closeNav"/>
       <ul v-if="!themeListFlag">
         <li class="mobile-menu-list" @click="moveToProfile">Profile</li>
@@ -36,6 +38,7 @@ function selectTheme(themeKey: string) {
         <li class="mobile-menu-list" @click="showThemeList">Theme</li>
         <divider color="var(--color-text)"/>
       </ul>
+      <transition name="fade" mode="out-in">
       <ul v-if="themeListFlag">
         <li v-for="theme in themes"
           class="mobile-menu-list"
@@ -49,25 +52,27 @@ function selectTheme(themeKey: string) {
         </li>
         <divider color="var(--color-text)"/>
       </ul>
+      </transition>
     </nav>
+    </transition>
   </div>
 </template>
 <style scoped>
 nav {
   position: fixed;
+  display: flex;
+  flex-direction: column;
 }
 .hamburger-menu {
   position: fixed;
   right: 0;
-  border: 2px solid var(--color-text);
-  background-color: var(--color-primary);
-  width: 40px;
-  padding: 5px;
+  width: 25px;
+  padding: 10px;
 }
 .x-button {
-  position: fixed;
-  width: 40px;
-  padding: 5px;
+  align-self: end;
+  width: 25px;
+  padding: 10px;
   right: 0;
 }
 .mobile-menu {
@@ -79,5 +84,17 @@ nav {
 }
 .mobile-menu-list {
   font-size: xx-large;
+  cursor: pointer;
+}
+
+/* menu transition */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
 }
 </style>

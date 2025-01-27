@@ -1,11 +1,26 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import Components from 'unplugin-vue-components/vite';
+import AutoImport from 'unplugin-auto-import/vite';
 
-// https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  const isProduction = mode === 'production';
+  return {
   plugins: [
     vue(),
+    Components({
+      dirs: ['src/components'],
+      extensions: ['vue'],
+      deep: true,
+    }),
+    AutoImport({
+      imports: [
+        'vue',
+      ],
+      dirs: ['src/composables',],
+      dts: 'src/auto-imports.d.ts'
+    }),
   ],
   base: '/',
   resolve: {
@@ -16,4 +31,15 @@ export default defineConfig({
       'composables': path.resolve(__dirname, 'src/composables'),
     }
   },
+  build: {
+    terserOptions: {
+      compress: {
+        drop_console: isProduction,
+      },
+      // ie8: true,
+      module: true,
+      sourceMap: !isProduction,
+    }
+  }
+}
 })

@@ -1,4 +1,3 @@
-import { ref, watch, onMounted } from 'vue';
 import themes from '../assets/themes.json';
 import { useLocalStorage, useMediaQuery } from '@vueuse/core';
 
