@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { XMarkIcon, Bars3Icon } from '@heroicons/vue/16/solid';
 import { storeToRefs } from 'pinia';
+import { UserCircleIcon, BriefcaseIcon, PuzzlePieceIcon, BookOpenIcon, SparklesIcon } from '@heroicons/vue/24/outline'
 const { setTheme, themes } = useTheme();
 const { profile, career, project, experiment } = storeToRefs(useCardStore());
 
@@ -17,10 +18,10 @@ function moveToCareer() {
   career.value?.scrollIntoView({behavior: 'smooth'})
   close();
 }
-// function moveToProject() {
-//   project.value?.scrollIntoView({behavior: 'smooth'})
-//   close();
-// }
+function moveToProject() {
+  project.value?.scrollIntoView({behavior: 'smooth'})
+  close();
+}
 function moveToExperiment() {
   experiment.value?.scrollIntoView({behavior: 'smooth'})
   close();
@@ -44,21 +45,36 @@ function selectTheme(themeKey: string) {
     <nav v-if="mobileMenuFlag" class="mobile-menu" key="menu">
       <XMarkIcon class="x-button" @click="closeNav"/>
       <ul v-if="!themeListFlag">
-        <li class="mobile-menu-list" @click="moveToProfile">Profile</li>
-        <divider color="var(--color-text)"/>
-        <li class="mobile-menu-list" @click="moveToCareer">Career</li>
-        <divider color="var(--color-text)"/>
-        <li class="disable">Project</li>
-        <divider color="var(--color-text)"/>
-        <li class="mobile-menu-list" @click="moveToExperiment">Experiments</li>
-        <divider color="var(--color-text)"/>
-        <li class="mobile-menu-list" @click="showThemeList">Theme</li>
-        <divider color="var(--color-text)"/>
+        <li class="mobile-menu-list" @click="moveToProfile">
+          <UserCircleIcon class="menu-list-icon"/>
+          Profile
+          <divider color="var(--color-text)"/>
+        </li>
+        <li class="mobile-menu-list" @click="moveToCareer">
+          <BriefcaseIcon class="menu-list-icon"/>
+          Career
+          <divider color="var(--color-text)"/>
+        </li>
+        <li class="mobile-menu-list" @click="moveToProject">
+          <PuzzlePieceIcon class="menu-list-icon"/>
+          Project
+          <divider color="var(--color-text)"/>
+        </li>
+        <li class="mobile-menu-list" @click="moveToExperiment">
+          <BookOpenIcon class="menu-list-icon"/>
+          Experiments
+          <divider color="var(--color-text)"/>
+        </li>
+        <li class="mobile-menu-list" @click="showThemeList">
+          <SparklesIcon class="menu-list-icon"/>
+          Theme
+          <divider color="var(--color-text)"/>
+        </li>
       </ul>
       <transition name="fade" mode="out-in">
       <ul v-if="themeListFlag">
         <li v-for="theme in themes"
-          class="mobile-menu-list"
+          class="mobile-theme-list"
           :style = "{
             'background-color': theme.colors.background,
             color: theme.colors.text
@@ -67,7 +83,7 @@ function selectTheme(themeKey: string) {
         >
           {{ theme.name }}
         </li>
-        <divider color="var(--color-text)"/>
+        <!-- <divider color="var(--color-text)"/> -->
       </ul>
       </transition>
     </nav>
@@ -102,11 +118,27 @@ nav {
   z-index: 999;
 }
 .mobile-menu-list {
-  font-size: xx-large;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  font-size: large;
+  margin-bottom: 10px;
 }
-.disable {
+.menu-list-icon {
+  width: 80px;
+}
+.mobile-theme-list {
+  width: 80vw;
+  height: 10vh;
+  margin: 10px;
+  padding: 20px;
+  font-weight: 900;
   font-size: xx-large;
-  opacity: 0.5;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
