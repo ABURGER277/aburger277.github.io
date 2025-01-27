@@ -6,7 +6,7 @@ const { profile, career, project, experiment } = storeToRefs(useCardStore());
 
 function moveToProfile() { profile.value?.scrollIntoView({behavior: 'smooth'})}
 function moveToCareer() { career.value?.scrollIntoView({behavior: 'smooth'}) }
-// function moveToProject() { project.value?.scrollIntoView({behavior: 'smooth'}) }
+function moveToProject() { project.value?.scrollIntoView({behavior: 'smooth'}) }
 function moveToExperiments() { experiment.value?.scrollIntoView({behavior: 'smooth'})}
 
 </script>
@@ -15,7 +15,7 @@ function moveToExperiments() { experiment.value?.scrollIntoView({behavior: 'smoo
   <ul>
     <li class="desktop-menu-list" @click="moveToProfile">Profile</li>
     <li class="desktop-menu-list" @click="moveToCareer">Career</li>
-    <li class="disable">Project</li>
+    <li class="desktop-menu-list" @click="moveToProject">Project</li>
     <li class="desktop-menu-list" @click="moveToExperiments">Experiments</li>
     <div class="empty-div"></div>
   </ul>
