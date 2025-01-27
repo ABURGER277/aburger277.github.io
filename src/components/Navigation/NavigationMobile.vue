@@ -1,15 +1,30 @@
 <script setup lang="ts">
 import { XMarkIcon, Bars3Icon } from '@heroicons/vue/16/solid';
+import { storeToRefs } from 'pinia';
 const { setTheme, themes } = useTheme();
+const { profile, career, project, experiment } = storeToRefs(useCardStore());
 
 const mobileMenuFlag = ref(false);
 const themeListFlag = ref(false);
 function showNav() { mobileMenuFlag.value = true; }
 function closeNav() { close(); }
 function showThemeList() { themeListFlag.value = true; }
-function moveToCareer() { close(); }
-function moveToProfile() { close(); }
-function moveToProject() { close(); }
+function moveToProfile() {
+  profile.value?.scrollIntoView({behavior: 'smooth'})
+  close();
+}
+function moveToCareer() {
+  career.value?.scrollIntoView({behavior: 'smooth'})
+  close();
+}
+function moveToProject() {
+  project.value?.scrollIntoView({behavior: 'smooth'})
+  close();
+}
+function moveToExperiment() {
+  experiment.value?.scrollIntoView({behavior: 'smooth'})
+  close();
+}
 
 function close() {
   mobileMenuFlag.value = false;
@@ -33,7 +48,9 @@ function selectTheme(themeKey: string) {
         <divider color="var(--color-text)"/>
         <li class="mobile-menu-list" @click="moveToCareer">Career</li>
         <divider color="var(--color-text)"/>
-        <li class="mobile-menu-list" @click="moveToProject">Project</li>
+        <li class="disable" @click="moveToProject">Project</li>
+        <divider color="var(--color-text)"/>
+        <li class="mobile-menu-list" @click="moveToExperiment">Experiments</li>
         <divider color="var(--color-text)"/>
         <li class="mobile-menu-list" @click="showThemeList">Theme</li>
         <divider color="var(--color-text)"/>
@@ -81,10 +98,16 @@ nav {
   flex-direction: column;
   width: 100%;
   height: 100%;
+
+  z-index: 999;
 }
 .mobile-menu-list {
   font-size: xx-large;
   cursor: pointer;
+}
+.disable {
+  font-size: xx-large;
+  opacity: 0.5;
 }
 
 /* menu transition */

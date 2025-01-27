@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
       imports: [
         'vue',
       ],
-      dirs: ['src/composables',],
+      dirs: ['src/composables', 'src/stores'],
       dts: 'src/auto-imports.d.ts'
     }),
   ],

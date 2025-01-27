@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 const { setTheme, themes } = useTheme();
-function moveToCareer() { }
-function moveToProfile() { }
-function moveToProject() { }
+
+const { profile, career, project, experiment } = storeToRefs(useCardStore());
+
+function moveToProfile() { profile.value?.scrollIntoView({behavior: 'smooth'})}
+function moveToCareer() { career.value?.scrollIntoView({behavior: 'smooth'}) }
+// function moveToProject() { project.value?.scrollIntoView({behavior: 'smooth'}) }
+function moveToExperiments() { experiment.value?.scrollIntoView({behavior: 'smooth'})}
 
 </script>
 <template>
@@ -10,7 +15,8 @@ function moveToProject() { }
   <ul>
     <li class="desktop-menu-list" @click="moveToProfile">Profile</li>
     <li class="desktop-menu-list" @click="moveToCareer">Career</li>
-    <li class="desktop-menu-list" @click="moveToProject">Project</li>
+    <li class="disable">Project</li>
+    <li class="desktop-menu-list" @click="moveToExperiments">Experiments</li>
     <div class="empty-div"></div>
   </ul>
   <div
@@ -33,10 +39,13 @@ function moveToProject() { }
 <style scoped>
 .desktop-menu {
   display: none;
+  position: fixed;
   background-color: var(--color-primary);
   border-bottom: 2px solid var(--color-accent2);
   width: 100%;
   height: 60px;
+
+  z-index: 999;
 }
 ul {
   display: flex;
@@ -50,10 +59,23 @@ ul {
   letter-spacing: 1.5px;
   padding: 0 40px;
 }
+.disable {
+  font-weight: 900;
+  font-size: large;
+  flex-grow: 0;
+  letter-spacing: 1.5px;
+  padding: 0 40px;
+  opacity: 0.5;
+}
 .desktop-menu-list:hover {
-  /* transform: scale(1.5); */
-  /* transition: transform 1s, background-color 0.3s; */
   cursor: pointer;
+}
+.desktop-menu-list:after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-accent2);
+  height: 3px;
+  width: fit-content;
 }
 .empty-div {
   flex-grow: 1;

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { BriefcaseIcon, CalendarDateRangeIcon } from '@heroicons/vue/16/solid'
+import { storeToRefs } from 'pinia';
+const { career } = storeToRefs(useCardStore());
 
 interface Career {
   period: string;
@@ -26,7 +28,7 @@ const careerList: Career[] = [
         -- 코드 리팩토링 및 중복 컴포넌트 정규화
         -- 개발 환경설정 개선:
         --- Components, Plugins, Composables를 AutoImport 시킴으로서 이후 개발 효율을 상승
-        --- CLI > Vite로 빌드 속도가 상승되어
+        --- CLI > Vite로 빌드 속도가 상승
         - 클라이언트 최적화:
         -- CSS Minification
         -- Vuetify Treeshaking
@@ -50,23 +52,27 @@ const careerList: Career[] = [
 ];
 
 function parseResponsibility(resp: string) {
-      const lines = resp.split('\n').map(line => line.trim()).filter(line => line !== '');
-
-      return lines.map(line => {
-        const match = line.match(/^(-+)\s*(.*)/);
-        console.log(match)
-        if (match) {
-          const level = match[1].length;
-          const content = match[2].trim();
-          return { level, content };
-        } else {
-          return { level: 0, content: line };
-        }
-      });
+  const lines = resp.split('\n').map(line => line.trim()).filter(line => line !== '');
+  return lines.map(line => {
+    const match = line.match(/^(-+)\s*(.*)/);
+    if (match) {
+      const level = match[1].length;
+      const content = match[2].trim();
+      return { level, content };
+    } else {
+      return { level: 0, content: line };
     }
+  });
+}
+
+const refCareer = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+  career.value = refCareer.value;
+})
 </script>
 <template>
-<div>
+<div ref="refCareer">
   <h1>Career Timeline</h1>
   <div class="card-content">
     <div v-for="(data, index) in careerList" :key="index">

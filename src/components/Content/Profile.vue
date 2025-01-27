@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import profileImg from '../../assets/profile_image.jpg';
 import { UserCircleIcon, CalendarIcon, EnvelopeIcon, IdentificationIcon } from '@heroicons/vue/16/solid';
+const { profile } = storeToRefs(useCardStore());
 interface ImageData {
   src: string;
   alt: string;
@@ -33,9 +35,15 @@ const profileData: profile = {
   },
   description: "안녕하세요. 나날이 발전하는 프론트엔드 개발자입니다."
 }
+
+const refProfile = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+  profile.value = refProfile.value;
+})
 </script>
 <template>
-  <div>
+  <div ref="refProfile">
   <h1>Profile</h1>
   <div class="card-content container-profile">
     <div class="item-profile">

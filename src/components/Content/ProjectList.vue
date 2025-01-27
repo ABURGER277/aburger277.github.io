@@ -1,10 +1,19 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+
+const { project } = storeToRefs(useCardStore());
+const refProject = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+  project.value = refProject.value;
+})
 </script>
 
 <template>
-  <!-- <div class="card-content">
+  <div class="card-content" ref="refProject">
     <h1>Project List</h1>
-    <ul>
+    <h3>작성중 입니다.</h3>
+    <!-- <ul>
       <li v-for="(project, index) in projects" :key="index">
         <h3>{{ project.title }}</h3>
         <p>{{ project.description }}</p>
@@ -18,8 +27,8 @@
           깃허브 보기
         </a>
       </li>
-    </ul>
-  </div> -->
+    </ul> -->
+  </div>
 </template>
 
 <style scoped>

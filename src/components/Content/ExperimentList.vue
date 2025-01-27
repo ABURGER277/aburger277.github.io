@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+const { experiment } = storeToRefs(useCardStore());
+
+const refExperiment = ref(null);
+onMounted(() => {
+  experiment.value = refExperiment.value;
+})
+
 interface Project {
   title: string;
   description: string;
@@ -39,10 +47,14 @@ const projects: Project[] = [
     gitLink: "https://github.com/ABURGER277/Playground",
   },
 ];
+
+onMounted(() => {
+
+})
 </script>
 
 <template>
-<div>
+<div ref="refExperiment">
   <h1>Experiments</h1>
   <div class="card-content">
     <ul>
