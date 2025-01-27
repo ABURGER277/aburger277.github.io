@@ -17,10 +17,10 @@ function moveToCareer() {
   career.value?.scrollIntoView({behavior: 'smooth'})
   close();
 }
-function moveToProject() {
-  project.value?.scrollIntoView({behavior: 'smooth'})
-  close();
-}
+// function moveToProject() {
+//   project.value?.scrollIntoView({behavior: 'smooth'})
+//   close();
+// }
 function moveToExperiment() {
   experiment.value?.scrollIntoView({behavior: 'smooth'})
   close();
@@ -48,7 +48,7 @@ function selectTheme(themeKey: string) {
         <divider color="var(--color-text)"/>
         <li class="mobile-menu-list" @click="moveToCareer">Career</li>
         <divider color="var(--color-text)"/>
-        <li class="disable" @click="moveToProject">Project</li>
+        <li class="disable">Project</li>
         <divider color="var(--color-text)"/>
         <li class="mobile-menu-list" @click="moveToExperiment">Experiments</li>
         <divider color="var(--color-text)"/>
