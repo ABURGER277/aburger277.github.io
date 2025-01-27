@@ -76,19 +76,17 @@ onMounted(() => {
   <h1>Career Timeline</h1>
   <div class="card-content">
     <div v-for="(data, index) in careerList" :key="index">
-      <p class="timeline-item">
+      <div class="timeline-item">
         <CalendarDateRangeIcon class="icon"/><span class="period">{{ data.period }}</span>
-      </p>
-      <p class="timeline-item">
+      </div>
+      <div class="timeline-item">
         <BriefcaseIcon class="icon"/>
-        <span class="company">{{ data.company }}: </span>
-        <span class="position">{{ data.position }}</span>
-      </p>
+        <p class="company">{{ data.company }}: </p>
+      </div>
+      <p class="position">{{ data.position }}</p>
       <div class="timeline-item">
         <ul class="responsibilities">
           <li v-for="(responsibility, index) in data.responsibilities" :key="index">
-            <!-- <span class="responsibility">{{ parseResponsibility(responsibility) }}</span> -->
-
             <span
               v-for="(line, lineIndex) in parseResponsibility(responsibility)"
               :key="lineIndex"
@@ -118,7 +116,12 @@ li {
 .icon {
   margin-right: 2px;
 }
+.period {
+  font-weight: 700;
+  font-size: larger;
+}
 .company {
+  display: inline-block;
   font-weight: 600;
   margin-right: 5px;
 }
@@ -139,27 +142,27 @@ li {
 .resp-line {
   display: block;
   position: relative;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
 }
 .level-0{
   font-weight: 700;
-  margin-left: 1rem;
 }
 .level-1{
   font-weight: 600;
-  margin-left: 2rem;
+  margin-left: 0.5rem;
 }
 .level-2{
   font-weight: 500;
-  margin-left: 3rem;
+  margin-left: 1.0rem;
 }
 .level-3{
   font-weight: 400;
-  margin-left: 4crem;
+  margin-left: 1.5rem;
 }
 .resp-line::before {
-  position: absolute;
+  content: "- ";
+  /* position: absolute; */
   left: 0;
-  color: #3498db;
+  color: var(--color-accent1);
 }
 </style>

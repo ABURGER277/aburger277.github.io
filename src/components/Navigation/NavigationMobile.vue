@@ -7,6 +7,13 @@ const { profile, career, project, experiment } = storeToRefs(useCardStore());
 
 const mobileMenuFlag = ref(false);
 const themeListFlag = ref(false);
+
+watch(mobileMenuFlag, () => {
+  mobileMenuFlag.value
+  ? document.body.style.overflow = 'hidden'
+  : document.body.style.overflow = 'auto';
+})
+
 function showNav() { mobileMenuFlag.value = true; }
 function closeNav() { close(); }
 function showThemeList() { themeListFlag.value = true; }
@@ -68,11 +75,10 @@ function selectTheme(themeKey: string) {
         <li class="mobile-menu-list" @click="showThemeList">
           <SparklesIcon class="menu-list-icon"/>
           Theme
-          <divider color="var(--color-text)"/>
         </li>
       </ul>
       <transition name="fade" mode="out-in">
-      <ul v-if="themeListFlag">
+      <ul v-if="themeListFlag" >
         <li v-for="theme in themes"
           class="mobile-theme-list"
           :style = "{

@@ -10,8 +10,9 @@ onMounted(() => {
 </script>
 
 <template>
+<div>
+  <h1>Project List</h1>
   <div class="card-content" ref="refProject">
-    <h1>Project List</h1>
     <h3>작성중 입니다.</h3>
     <!-- <ul>
       <li v-for="(project, index) in projects" :key="index">
@@ -29,6 +30,7 @@ onMounted(() => {
       </li>
     </ul> -->
   </div>
+</div>
 </template>
 
 <style scoped>

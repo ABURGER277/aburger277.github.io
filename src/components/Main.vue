@@ -16,8 +16,8 @@
   #main {
     padding-top: 60px;
   }
-}
-.contentCard {
-  margin: 50px 20px;
+  .contentCard {
+    margin: 50px 20px;
+  }
 }
 </style>
