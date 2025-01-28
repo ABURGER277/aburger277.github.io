@@ -16,13 +16,13 @@
     "key": "dark",
     "name": "DARK",
     "colors": {
-      "primary": "#3B4F52",
+      "primary": "#0D1117",
       "secondary": "#5C786E",
-      "accent1": "#577146",
-      "accent2": "#3B4E3F",
+      "accent1": "#0969DA",
+      "accent2": "#9198A1",
       "warning": "#553F33",
       "text": "rgba(255, 255, 255, 0.87)",
-      "background": "#242424"
+      "background": "#151B23"
     }
   },
   {
@@ -31,9 +31,9 @@
     "colors": {
       "primary": "#3B4F52",
       "secondary": "#5C786E",
-      "accent1": "#577146",
-      "accent2": "#3B4E3F",
-      "warning": "#553F33",
+      "accent1": "#553F33",
+      "accent2": "#553",
+      "warning": "#553",
       "text": "rgba(255, 255, 255, 0.87)",
       "background": "#738E57"
     }
