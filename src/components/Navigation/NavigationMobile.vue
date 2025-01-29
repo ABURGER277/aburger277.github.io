@@ -162,7 +162,7 @@ from {
   }
 }
 .animation {
-overflow: hidden;
--webkit-animation: typing 3s steps(13, end) infinite, blink-caret .1s step-end infinite alternate;
+  overflow: hidden;
+  -webkit-animation: typing 3s steps(13, end) infinite, blink-caret .1s step-end infinite alternate;
 }
 </style>

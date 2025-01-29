@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CareerTimeline: typeof import('./src/components/Content/CareerTimeline.vue')['default']
+    CopyCheckIcon: typeof import('./src/components/Common/CopyCheckIcon.vue')['default']
     CustomSvg: typeof import('./src/components/Common/CustomSvg.vue')['default']
     Divider: typeof import('./src/components/Common/Divider.vue')['default']
     ExperimentList: typeof import('./src/components/Content/ExperimentList.vue')['default']

@@ -2,8 +2,7 @@
 import { storeToRefs } from 'pinia';
 import profileImg from '../../assets/profile_image.jpg';
 import { UserCircleIcon, CalendarIcon, EnvelopeIcon, IdentificationIcon } from '@heroicons/vue/16/solid';
-import { Square2StackIcon, CheckCircleIcon } from '@heroicons/vue/24/outline'
-import { useClipboard } from '@vueuse/core'
+import CopyCheckIcon from '../Common/CopyCheckIcon.vue';
 const { profile } = storeToRefs(useCardStore());
 interface ImageData {
   src: string;
@@ -39,14 +38,12 @@ const profileData: profile = {
 
 const refProfile = ref<HTMLElement | null>(null);
 
-const { copy, copied } = useClipboard({copiedDuring: 800});
-
 onMounted(() => {
   profile.value = refProfile.value;
 })
 </script>
 <template>
-  <div ref="refProfile">
+<div ref="refProfile">
   <h1>Profile</h1>
   <div class="card-content container-profile">
     <div class="item-profile">
@@ -58,15 +55,10 @@ onMounted(() => {
     <div class="item-profile">
       <EnvelopeIcon class="icon"/>
       <span>{{ profileData.mail }}</span>
-      <!-- <transition name="fade" mode="out-in"> -->
-        <div class="icon">
-          <Square2StackIcon v-if="!copied" class="icon-copy" @click="copy(profileData.mail)"/>
-          <CheckCircleIcon v-if="copied" class="icon-check"/>
-        </div>
-      <!-- </transition> -->
+         <CopyCheckIcon :duration="1000" :source="profileData.mail"/>
     </div>
     <div class="item-profile">
-      <GithubSvg class="icon" color="var(--color-text)" :size="20" style=""/>
+      <GithubSvg class="icon" color="var(--color-text)" :size="20"/>
       <a :href="profileData.github">visit My Github!</a>
     </div>
     <div class="item-profile">
@@ -79,8 +71,6 @@ onMounted(() => {
       <span>{{ profileData.license }}</span>
     </div>
   </div>
-
-
 </div>
 </template>
 <style scoped>
@@ -101,42 +91,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
 }
-.icon-copy {
-  margin-left: 5px;
-  min-width: 20px;
-  width: 20px;
-}
-.icon-copy:hover {
-  cursor: pointer;
-}
 .item-stack {
   padding-left: 5px;
 }
-.icon-check {
-  width: 20px;
-  margin-left: 5px;
-  fill: var(--color-accent1);
-}
-/* .arrow{
-  position: relative;
-  width:90px;
-  background: var(--color-accent1);
-  height:20px;
-  line-height: 20px;
-  margin-left: 2px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  padding-left: 5px;
-  box-shadow: 1px 1px 5px var(--color-text);
-}
-.arrow-left:before{
-    content: "";
-    position: absolute;
-    left: -10px;
-    top: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid var(--color-accent1);
-} */
 </style>
