@@ -58,13 +58,12 @@ onMounted(() => {
     <div class="item-profile">
       <EnvelopeIcon class="icon"/>
       <span>{{ profileData.mail }}</span>
-      <Square2StackIcon class="icon-copy" @click="copy(profileData.mail)"/>
-      <transition name="fade" mode="out-in">
-        <div v-if="copied" class="arrow arrow-left">
-          <CheckCircleIcon class="icon-check"/>
-          복사 성공!
+      <!-- <transition name="fade" mode="out-in"> -->
+        <div class="icon">
+          <Square2StackIcon v-if="!copied" class="icon-copy" @click="copy(profileData.mail)"/>
+          <CheckCircleIcon v-if="copied" class="icon-check"/>
         </div>
-      </transition>
+      <!-- </transition> -->
     </div>
     <div class="item-profile">
       <GithubSvg class="icon" color="var(--color-text)" :size="20" style=""/>
@@ -103,7 +102,7 @@ onMounted(() => {
   align-items: center;
 }
 .icon-copy {
-  margin-left: 10px;
+  margin-left: 5px;
   min-width: 20px;
   width: 20px;
 }
@@ -115,9 +114,10 @@ onMounted(() => {
 }
 .icon-check {
   width: 20px;
-  margin-right: 2px;
+  margin-left: 5px;
+  fill: var(--color-accent1);
 }
-.arrow{
+/* .arrow{
   position: relative;
   width:90px;
   background: var(--color-accent1);
@@ -138,5 +138,5 @@ onMounted(() => {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-right: 10px solid var(--color-accent1);
-}
+} */
 </style>

@@ -142,27 +142,33 @@ li {
 .resp-line {
   display: block;
   position: relative;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .level-0{
   font-weight: 700;
 }
 .level-1{
   font-weight: 600;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
+}
+.level-1::before {
+  content: "⇢ ";
 }
 .level-2{
   font-weight: 500;
-  margin-left: 1.0rem;
+  margin-left: 2rem;
+}
+.level-2::before {
+  content: "👍 ";
 }
 .level-3{
   font-weight: 400;
-  margin-left: 1.5rem;
+  margin-left: 3rem;
+}
+.level-3::before {
+  content: "✚ ";
 }
 .resp-line::before {
-  content: "- ";
-  /* position: absolute; */
-  left: 0;
   color: var(--color-accent1);
 }
 </style>
