@@ -80,7 +80,7 @@ function selectTheme(themeKey: string) {
       <transition name="fade" mode="out-in">
       <ul v-if="themeListFlag" >
         <li v-for="theme in themes"
-          class="mobile-theme-list"
+          class="mobile-theme-list animation"
           :style = "{
             'background-color': theme.colors.background,
             color: theme.colors.text
@@ -131,6 +131,9 @@ nav {
   font-size: large;
   margin-bottom: 10px;
 }
+.mobile-menu-list:hover {
+  opacity: 0.5;
+}
 .menu-list-icon {
   width: 80px;
 }
@@ -146,5 +149,20 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@keyframes typing {
+from {
+  width: 0;
+}
+}
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
+}
+.animation {
+overflow: hidden;
+-webkit-animation: typing 3s steps(13, end) infinite, blink-caret .1s step-end infinite alternate;
 }
 </style>

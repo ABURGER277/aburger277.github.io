@@ -20,7 +20,7 @@ function moveToExperiments() { experiment.value?.scrollIntoView({behavior: 'smoo
     <div class="empty-div"></div>
   </ul>
   <div
-    class="theme-container"
+    class="theme-container shadow"
   >
     <div v-for="theme in themes">
       <div class="theme-item"
@@ -103,7 +103,6 @@ ul {
   right: 30px;
   width: 150px;
   background-color: var(--color-primary);
-  box-shadow: 1px 1px 5px 5px var(--color-text);
 }
 .theme-item {
   padding: 20px;
@@ -112,5 +111,42 @@ ul {
 }
 .theme-item:hover {
   cursor: pointer;
+}
+.shadow
+{
+  background: linear-gradient(0deg,#000,#262626);
+}
+.shadow:before,
+.shadow:after
+{
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background: linear-gradient(45deg,#fb0094,#0000ff,#00ff00,#ffff00,#ff0000,#fb0094,#0000ff,#00ff00,#ffff00,#ff0000);
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: animate 20s linear infinite;
+}
+.shadow:after
+{
+  filter: blur(20px);
+}
+@keyframes animate
+{
+  0%
+  {
+    background-position: 0 0;
+  }
+  50%
+  {
+    background-position: 300% 0;
+  }
+  100%
+  {
+    background-position: 0 0;
+  }
 }
 </style>
