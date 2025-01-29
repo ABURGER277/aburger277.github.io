@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import { LinkIcon } from '@heroicons/vue/16/solid';
+
 const { experiment } = storeToRefs(useCardStore());
 
 const refExperiment = ref(null);
@@ -59,16 +61,22 @@ onMounted(() => {
   <div class="card-content">
     <ul>
       <li v-for="(project, index) in projects" :key="index">
-        <h3> <{{ project.title }}> </h3>
+        <h3 style="opacity: 0.8;"> [{{ project.title }}] </h3>
         <p>{{ project.description }}</p>
         <p><strong>used Skill:</strong> {{ project.techStacks?.join(", ") }}</p>
         <p><strong>used Tool:</strong> {{ project.used?.join(", ") }}</p>
-        <a v-if="project.link" :href="project.link" target="_blank">
-          프로젝트 보기
-        </a>
-        <a v-if="project.gitLink" :href="project.gitLink" target="_blank">
-          깃허브 보기
-        </a>
+        <div class="link-container">
+          <LinkIcon class="icon"/>
+          <a v-if="project.link" :href="project.link" target="_blank">
+            프로젝트 보기
+          </a>
+          <a v-else class="link-disable"> no Link </a>
+          <GithubSvg class="icon"/>
+          <a v-if="project.gitLink" :href="project.gitLink" target="_blank">
+            깃허브 보기
+          </a>
+          <a v-else class="link-disable"> no Github </a>
+        </div>
       </li>
     </ul>
   </div>
@@ -76,4 +84,20 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.link-container {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  .icon {
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+}
+.link-disable {
+  cursor: default;
+}
+.link-disable:hover {
+  color: grey;
+  text-decoration: line-through;
+}
 </style>
