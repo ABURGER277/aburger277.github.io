@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { LinkIcon } from '@heroicons/vue/16/solid';
+import Divider from '../Common/Divider.vue';
 
 const { experiment } = storeToRefs(useCardStore());
 
@@ -53,6 +54,10 @@ const projects: Project[] = [
 onMounted(() => {
 
 })
+
+const showDividerOnBottom = (index: number) => {
+  return index !== projects.length - 1;
+}
 </script>
 
 <template>
@@ -77,6 +82,7 @@ onMounted(() => {
           </a>
           <a v-else class="link-disable"> no Github </a>
         </div>
+        <Divider v-if="showDividerOnBottom(index)"/>
       </li>
     </ul>
   </div>
@@ -97,7 +103,6 @@ onMounted(() => {
   cursor: default;
 }
 .link-disable:hover {
-  color: grey;
   text-decoration: line-through;
 }
 </style>
