@@ -4,11 +4,19 @@ const { setTheme, themes } = useTheme();
 
 const { profile, career, project, experiment } = storeToRefs(useCardStore());
 
-function moveToProfile() { profile.value?.scrollIntoView({behavior: 'smooth'})}
-function moveToCareer() { career.value?.scrollIntoView({behavior: 'smooth'}) }
-function moveToProject() { project.value?.scrollIntoView({behavior: 'smooth'}) }
-function moveToExperiments() { experiment.value?.scrollIntoView({behavior: 'smooth'})}
+const TOP_MENU_HEIGHT = 60 + 10; // el.height + some margin
 
+function scrollToEl(el: HTMLElement | null) {
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - TOP_MENU_HEIGHT;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+// 단일 선언으로 모든 moveToX 함수 작성
+function moveToProfile()    { scrollToEl(profile.value) }
+function moveToCareer()     { scrollToEl(career.value) }
+function moveToProject()    { scrollToEl(project.value) }
+function moveToExperiments(){ scrollToEl(experiment.value) }
 </script>
 <template>
 <nav class="desktop-menu">
