@@ -7,6 +7,7 @@ interface Career {
   period: string;
   company: string;
   position: string;
+  description?: string;
   responsibilities: string[];
 }
 
@@ -15,20 +16,24 @@ const careerList: Career[] = [
     period: "2024.04 - Present",
     company: "Kaoni, 가온아이",
     position: "Frontend Junior Developer",
+    description: "회사 도메인을 사용한 PC톡 애플리케이션 개발",
     responsibilities: [
       `WPF와 Nuxt3 프레임워크 위에서 신규 기능 개발 및 유지보수 작업을 진행중 입니다.
         - 사용자 기능 개선:
-        -- Nested Popup / Modal ESC Handler
+        -- Nested Popup 과 Modal ESC Handler
+        --- UX친화적으로 keydown esc 순서를 제어
         - 신규 기능:
         -- 나간 상대 재초대
+        -- 대화방 게시판 및 공지
+        --- 앱 내 신규 CRUD 페이지
+
       `,
       `Nuxt2에서 Nuxt3로 Migartion 작업을 진행하였습니다.
         - 기존 코드 개선 작업:
         -- 불필요 및 중복 fetch요청 삭제
         -- 코드 리팩토링 및 중복 컴포넌트 정규화
-        -- 개발 환경설정 개선:
-        --- Components, Plugins, Composables를 AutoImport 시킴으로서 이후 개발 효율을 상승
-        --- CLI > Vite로 빌드 속도가 상승
+        -- 개발 환경설정 개선
+        --- CLI > Vite로 변경
         - 클라이언트 최적화:
         -- CSS Minification
         -- Vuetify Treeshaking
@@ -36,7 +41,7 @@ const careerList: Career[] = [
       `,
       `WPF기반 Webview2에서 Nuxt2를 사용하여 신규 기능을 개발했습니다.
         - 신규 기능
-        -- 대화방별 배경화면
+        -- 대화방별 배경화면 설정
         -- 대화방별 카테고리 설정
       `,
     ],
@@ -84,6 +89,7 @@ onMounted(() => {
         <p class="company">{{ data.company }}: </p>
       </div>
       <p class="position">{{ data.position }}</p>
+      <p class="description">{{ data.description }}</p>
       <div class="timeline-item">
         <ul class="responsibilities">
           <li v-for="(responsibility, index) in data.responsibilities" :key="index">
@@ -118,14 +124,18 @@ li {
 }
 .period {
   font-weight: 700;
-  font-size: larger;
+  font-size: xx-large;
 }
 .company {
   display: inline-block;
   font-weight: 600;
+  font-size: x-large;
   margin-right: 5px;
 }
-
+.description {
+  font-size: large;
+  font-weight: 400;
+}
 .career-item {
   margin-bottom: 2rem;
 }
