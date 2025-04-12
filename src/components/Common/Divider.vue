@@ -31,4 +31,7 @@ const dividerStyle = computed(() => {
   ></div>
 </template>
 <style scoped>
+.divider {
+  margin: 1rem 0rem;
+}
 </style>
