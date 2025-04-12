@@ -33,7 +33,8 @@ const profileData: profile = {
     src: profileImg,
     alt: "박수진의 프로필 이미지"
   },
-  description: "안녕하세요. 나날이 발전하는 프론트엔드 개발자입니다."
+  description: `안녕하세요. 나날이 발전하는 프론트엔드 개발자입니다.\r\n커스텀 인터랙트를 가진 컴포넌트를 제작하는것을 좋아해요.
+  `
 }
 
 const refProfile = ref<HTMLElement | null>(null);
@@ -46,10 +47,10 @@ onMounted(() => {
 <div ref="refProfile">
   <h1>Profile</h1>
   <div class="card-content container-profile">
-    <div class="item-profile">
+    <div class="item-profile name">
       <UserCircleIcon class="icon"/><span>{{ profileData.name }}</span>
     </div>
-    <div class="item-profile">
+    <div class="item-profile birth">
       <CalendarIcon class="icon"/><span>{{ profileData.birth }}</span>
     </div>
     <div class="item-profile">
@@ -61,8 +62,8 @@ onMounted(() => {
       <GithubSvg class="icon" color="var(--color-text)" :size="20"/>
       <a :href="profileData.github">visit My Github!</a>
     </div>
-    <div class="item-profile">
-      <IdentificationIcon class="icon"/><span>{{ profileData.description }}</span>
+    <div class="item-profile description">
+      <IdentificationIcon class="icon"/><span>{{ profileData.description?.trim() }}</span>
     </div>
     <div class="item-profile">
       <span v-for="stack in profileData.stacks" class="item-stack">{{ stack }}</span>
@@ -85,6 +86,7 @@ onMounted(() => {
   margin: 10px;
 }
 .icon {
+  height: 100%;
   margin-right: 5px;
 }
 .item-profile {
@@ -93,5 +95,16 @@ onMounted(() => {
 }
 .item-stack {
   padding-left: 5px;
+}
+.name {
+  font-size: x-large;
+}
+.birth {
+  font-size: large;
+}
+.description {
+  white-space: pre-wrap;
+  line-height: 1.5;
+  word-break: keep-all;
 }
 </style>
