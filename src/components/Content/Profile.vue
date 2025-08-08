@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import profileImg from '../../assets/profile_image.jpg';
+import profileImg from 'images/profile_image.jpg';
 import { UserCircleIcon, CalendarIcon, EnvelopeIcon, IdentificationIcon } from '@heroicons/vue/16/solid';
-import CopyCheckIcon from '../Common/CopyCheckIcon.vue';
 const { profile } = storeToRefs(useCardStore());
 interface ImageData {
   src: string;
