@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
-import profileImg from 'images/profile_image.jpg';
+import { useCardStore } from '@/stores/useCardStore';
+import profileImg from '@/assets/images/profile_image.jpg';
 import { UserCircleIcon, CalendarIcon, EnvelopeIcon, IdentificationIcon } from '@heroicons/vue/16/solid';
 const { profile } = storeToRefs(useCardStore());
+
 interface ImageData {
   src: string;
   alt: string;
@@ -26,7 +29,7 @@ const profileData: profile = {
   name: '박수진',
   birth: '1996. 5. 4',
   mail: 'aburger277@gmail.com',
-  stacks: ["HTML", "CSS", "JS", "Vue", "Nuxt", "Java"],
+  stacks: ["HTML", "CSS", "JavaScript", "TypeScript", "Vue", "Nuxt", "Java"],
   github: 'https://github.com/ABURGER277',
   img: {
     src: profileImg,
@@ -38,7 +41,7 @@ const profileData: profile = {
 
 const refProfile = ref<HTMLElement | null>(null);
 
-onMounted(() => {
+onMounted(async() => {
   profile.value = refProfile.value;
 })
 </script>
@@ -55,7 +58,7 @@ onMounted(() => {
     <div class="item-profile">
       <EnvelopeIcon class="icon"/>
       <span>{{ profileData.mail }}</span>
-         <CopyCheckIcon :duration="1000" :source="profileData.mail"/>
+      <CopyCheckIcon :duration="1000" :source="profileData.mail"/>
     </div>
     <div class="item-profile">
       <GithubSvg class="icon" color="var(--color-text)" :size="20"/>
@@ -64,8 +67,18 @@ onMounted(() => {
     <div class="item-profile description">
       <IdentificationIcon class="icon"/><span>{{ profileData.description?.trim() }}</span>
     </div>
-    <div class="item-profile">
-      <span v-for="stack in profileData.stacks" class="item-stack">{{ stack }}</span>
+    <div class="item-profile stack-container">
+      <div
+        v-for="stack in profileData.stacks"
+        :key="stack"
+        class="stack-item"
+      >
+        <CommonImage
+          :src="`icons/${stack.toLowerCase()}.svg`"
+          :size="100"
+          :color="'currentColor'"
+        />
+      </div>
     </div>
     <div class="item-profile">
       <span>{{ profileData.license }}</span>
@@ -79,11 +92,6 @@ onMounted(() => {
   flex-direction: column;
   gap: 10px;
 }
-.profile-img {
-  width: 300px;
-  border-radius: 10px;
-  margin: 10px;
-}
 .icon {
   height: 100%;
   margin-right: 5px;
@@ -91,6 +99,12 @@ onMounted(() => {
 .item-profile {
   display: flex;
   align-items: center;
+}
+.stack-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
 }
 .item-stack {
   padding-left: 5px;
