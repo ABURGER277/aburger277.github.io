@@ -16,6 +16,7 @@ declare module 'vue' {
     Divider: typeof import('./src/components/Common/Divider.vue')['default']
     ExperimentList: typeof import('./src/components/Content/ExperimentList.vue')['default']
     GithubSvg: typeof import('./src/components/Common/GithubSvg.vue')['default']
+    LandingPage: typeof import('./src/components/LandingPage.vue')['default']
     Main: typeof import('./src/components/Main.vue')['default']
     MyStack: typeof import('./src/components/Content/MyStack.vue')['default']
     NavigationDesktop: typeof import('./src/components/Navigation/NavigationDesktop.vue')['default']
@@ -23,5 +24,7 @@ declare module 'vue' {
     NavigationRoot: typeof import('./src/components/Navigation/NavigationRoot.vue')['default']
     Profile: typeof import('./src/components/Content/Profile.vue')['default']
     ProjectList: typeof import('./src/components/Content/ProjectList.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
   }
 }

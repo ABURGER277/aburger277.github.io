@@ -1,22 +1,20 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
 const { setTheme, themes } = useTheme();
 
 const { profile, career, project, experiment } = storeToRefs(useCardStore());
 
-const TOP_MENU_HEIGHT = 60 + 10; // el.height + some margin
+const TOP_MENU_HEIGHT = 60 + 50; // el.height + some margin
 
-function scrollToEl(el: HTMLElement | null) {
+const scrollToEl = (el: HTMLElement | null) => {
   if (!el) return;
   const top = el.getBoundingClientRect().top + window.pageYOffset - TOP_MENU_HEIGHT;
   window.scrollTo({ top, behavior: 'smooth' });
 }
 
-// 단일 선언으로 모든 moveToX 함수 작성
-function moveToProfile()    { scrollToEl(profile.value) }
-function moveToCareer()     { scrollToEl(career.value) }
-function moveToProject()    { scrollToEl(project.value) }
-function moveToExperiments(){ scrollToEl(experiment.value) }
+const moveToProfile = () =>     scrollToEl(profile.value);
+const moveToCareer = () =>      scrollToEl(career.value);
+const moveToProject = () =>     scrollToEl(project.value);
+const moveToExperiments = () => scrollToEl(experiment.value);
 </script>
 <template>
 <nav class="desktop-menu">
@@ -61,20 +59,21 @@ ul {
   height: 100%;
 }
 .desktop-menu-list {
-  font-weight: 900;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
   font-size: large;
   flex-grow: 0;
   letter-spacing: 1.5px;
   padding: 0 40px;
 }
-.disable {
+/* .disable {
   font-weight: 900;
   font-size: large;
   flex-grow: 0;
   letter-spacing: 1.5px;
   padding: 0 40px;
   opacity: 0.5;
-}
+} */
 .desktop-menu-list:hover {
   cursor: pointer;
 }

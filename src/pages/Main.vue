@@ -1,6 +1,7 @@
 <script setup lang="ts">
 </script>
 <template>
+  <NavigationRoot/>
   <main id="main">
     <Profile class="contentCard" ref="profile"/>
     <CareerTimeline class="contentCard" ref="career"/>

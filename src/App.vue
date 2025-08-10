@@ -7,8 +7,7 @@ useTheme();
 </script>
 
 <template>
-  <NavigationRoot/>
-  <Main/>
+  <router-view />
 </template>
 
 <style scoped>
