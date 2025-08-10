@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { storeToRefs } from 'pinia';
 import { useCardStore } from '@/stores/useCardStore';
 import profileImg from '@/assets/images/profile_image.jpg';
 import { UserCircleIcon, CalendarIcon, EnvelopeIcon, IdentificationIcon } from '@heroicons/vue/16/solid';
@@ -35,7 +33,8 @@ const profileData: profile = {
     src: profileImg,
     alt: "박수진의 프로필 이미지"
   },
-  description: `안녕하세요. 나날이 발전하는 프론트엔드 개발자입니다.\r\n커스텀 인터랙트를 가진 컴포넌트를 제작하는것을 좋아해요.
+  description: `
+    안녕하세요. 나날이 발전하는 프론트엔드 개발자입니다.\r\n커스텀 인터랙트를 가진 컴포넌트를 제작하는것을 좋아해요.
   `
 }
 
@@ -67,17 +66,20 @@ onMounted(async() => {
     <div class="item-profile description">
       <IdentificationIcon class="icon"/><span>{{ profileData.description?.trim() }}</span>
     </div>
-    <div class="item-profile stack-container">
-      <div
-        v-for="stack in profileData.stacks"
-        :key="stack"
-        class="stack-item"
-      >
-        <CommonImage
-          :src="`icons/${stack.toLowerCase()}.svg`"
-          :size="100"
-          :color="'currentColor'"
-        />
+    <div class="item-profile stack" >
+      <!-- <h3 class="stack-title">STACKS</h3> -->
+      <div class="stack-icon-container">
+        <div
+          v-for="stack in profileData.stacks"
+          :key="stack"
+          class="stack-icon"
+        >
+          <CommonImage
+            :src="`icons/${stack.toLowerCase()}.svg`"
+            :size="100"
+            :color="'currentColor'"
+          />
+        </div>
       </div>
     </div>
     <div class="item-profile">
@@ -100,14 +102,22 @@ onMounted(async() => {
   display: flex;
   align-items: center;
 }
-.stack-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 30px;
-}
-.item-stack {
-  padding-left: 5px;
+.stack {
+  /* .stack-title {
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 20px
+  } */
+  margin-top: 50px;
+  .stack-icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .stack-icon {
+    padding-left: 5px;
+  }
 }
 .name {
   font-size: x-large;

@@ -51,18 +51,6 @@ ul {
 li {
   list-style: none;
 }
-.card-content {
-  background-color: var(--color-background);
-  padding: 10px;
-  border: 2px solid var(--color-accent2);
-  border-radius: 10px;
-}
-.icon {
-  min-width: 20px;
-  width: 20px;
-  fill: var(--color-text);
-}
-
 /* transition component */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.3s ease;

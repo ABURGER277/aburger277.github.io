@@ -21,9 +21,15 @@ export default defineConfig(({ mode }) => {
       }),
       AutoImport({
         imports: [
-          'vue',
+          'vue', 'vue-router',
+          {
+            pinia: [
+              'defineStore',
+              'storeToRefs'
+            ]
+          },
         ],
-        dirs: ['src/composables', 'src/stores'],
+        dirs: ['src/composables', 'src/stores', 'src/utils', 'src/components'],
         dts: 'src/auto-imports.d.ts',
         vueTemplate: true,
 
