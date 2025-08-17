@@ -27,7 +27,7 @@ const profileData: profile = {
   name: '박수진',
   birth: '1996. 5. 4',
   mail: 'aburger277@gmail.com',
-  stacks: ["HTML", "CSS", "JavaScript", "TypeScript", "Vue", "Nuxt", "Java"],
+  stacks: ["HTML", "CSS", "JavaScript", "TypeScript", "Vue", "Nuxt"],
   github: 'https://github.com/ABURGER277',
   img: {
     src: profileImg,
@@ -76,7 +76,7 @@ onMounted(async() => {
         >
           <CommonImage
             :src="`icons/${stack.toLowerCase()}.svg`"
-            :size="100"
+            :size="50"
             :color="'currentColor'"
           />
         </div>
@@ -116,7 +116,16 @@ onMounted(async() => {
     gap: 20px;
   }
   .stack-icon {
-    padding-left: 5px;
+    /* background-color: var(--color-accent2); */
+    border: 2px solid var(--color-accent2);
+    border-radius: 10%;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    /* padding-left: 5px; */
+  }
+  .stack-icon:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   }
 }
 .name {

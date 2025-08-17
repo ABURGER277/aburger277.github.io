@@ -8,8 +8,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CareerTimeline: typeof import('./src/components/Content/CareerTimeline.vue')['default']
+    CommonDropdown: typeof import('./src/components/Common/CommonDropdown.vue')['default']
     CommonIcon: typeof import('./src/components/Common/CommonIcon.vue')['default']
     CommonImage: typeof import('./src/components/Common/CommonImage.vue')['default']
+    CommonModal: typeof import('./src/components/Common/CommonModal.vue')['default']
+    CommonPopup: typeof import('./src/components/Common/CommonPopup.vue')['default']
     CopyCheckIcon: typeof import('./src/components/Common/CopyCheckIcon.vue')['default']
     CustomButton: typeof import('./src/components/Common/CustomButton.vue')['default']
     CustomSvg: typeof import('./src/components/Common/CustomSvg.vue')['default']

@@ -1,76 +1,15 @@
 <script setup lang="ts">
 import { BriefcaseIcon, CalendarDateRangeIcon } from '@heroicons/vue/16/solid'
 import { storeToRefs } from 'pinia';
+import { careerList, type Career } from 'public/data/careerList';
+import type CommonModal from '../Common/CommonModal.vue';
+
 const { career } = storeToRefs(useCardStore());
-
-interface Career {
-  period: string;
-  company: string;
-  position: string;
-  description?: string;
-  responsibilities: string[];
-}
-
-const careerList: Career[] = [
-  {
-    period: "2024.04 - Present",
-    company: "Kaoni, 가온아이",
-    position: "Frontend Junior Developer",
-    description: "회사 도메인을 사용한 PC톡 애플리케이션 개발",
-    responsibilities: [
-      `WPF와 Nuxt3 프레임워크 위에서 신규 기능 개발 및 유지보수 작업을 진행중 입니다.
-        - 사용자 기능 개선:
-        -- Nested Popup 과 Modal ESC Handler
-        --- UX친화적으로 keydown esc 순서를 제어
-        - 신규 기능:
-        -- 나간 상대 재초대
-        -- 대화방 게시판 및 공지
-        --- 앱 내 신규 CRUD 페이지
-
-      `,
-      `Nuxt2에서 Nuxt3로 Migartion 작업을 진행하였습니다.
-        - 기존 코드 개선 작업:
-        -- 불필요 및 중복 fetch요청 삭제
-        -- 코드 리팩토링 및 중복 컴포넌트 정규화
-        -- 개발 환경설정 개선
-        --- CLI > Vite로 변경
-        - 클라이언트 최적화:
-        -- CSS Minification
-        -- Vuetify Treeshaking
-        -- Nuxt2 대비 번들크기 60%감소
-      `,
-      `WPF기반 Webview2에서 Nuxt2를 사용하여 신규 기능을 개발했습니다.
-        - 신규 기능
-        -- 대화방별 배경화면 설정
-        -- 대화방별 카테고리 설정
-      `,
-    ],
-  },
-  {
-    period: "2023.08 - 2024.01",
-    company: "KIC 캠퍼스 (국비 학원)",
-    position: "Backend Learner",
-    responsibilities: [
-      `Java & Spring 활용 풀스택 개발자 양성과정`
-    ],
-  }
-];
-
-function parseResponsibility(resp: string) {
-  const lines = resp.split('\n').map(line => line.trim()).filter(line => line !== '');
-  return lines.map(line => {
-    const match = line.match(/^(-+)\s*(.*)/);
-    if (match) {
-      const level = match[1].length;
-      const content = match[2].trim();
-      return { level, content };
-    } else {
-      return { level: 0, content: line };
-    }
-  });
-}
-
 const refCareer = ref<HTMLElement | null>(null);
+const modalRef = ref<InstanceType<typeof CommonModal> | null>(null);
+const openModal = (data: Career) => {
+  modalRef.value?.open(data);
+}
 
 onMounted(() => {
   career.value = refCareer.value;
@@ -86,22 +25,9 @@ onMounted(() => {
       </div>
       <div class="timeline-item">
         <BriefcaseIcon class="icon"/>
-        <p class="company">{{ data.company }}: </p>
-      </div>
-      <p class="position">{{ data.position }}</p>
-      <p class="description">{{ data.description }}</p>
-      <div class="timeline-item">
-        <ul class="responsibilities">
-          <li v-for="(responsibility, index) in data.responsibilities" :key="index">
-            <span
-              v-for="(line, lineIndex) in parseResponsibility(responsibility)"
-              :key="lineIndex"
-              :class="['resp-line', `level-${line.level}`]"
-            >
-              {{ line.content }}
-          </span>
-          </li>
-        </ul>
+        <p class="company pointer" @click="openModal(data)">
+          {{ data.company }}: <span class="position">{{ data.position }}</span>
+        </p>
       </div>
       <Divider
         v-if="index < careerList.length - 1"
@@ -109,12 +35,41 @@ onMounted(() => {
       />
     </div>
   </div>
+  <CommonModal
+    ref="modalRef"
+    size="large"
+    show-close-button
+  >
+    <template #content="{ data }">
+      <div class="modal-career-content">
+        <div class="career-header">
+          <h1 class="career-title">{{ data?.company }}</h1>
+          <p class="career-subtitle">{{ data?.position }}</p>
+          <p class="career-period">{{ data?.period }}</p>
+        </div>
+
+        <div class="career-description">
+          <p>{{ data?.description }}</p>
+        </div>
+
+        <div class="career-responsibilities">
+          <ul class="responsibilities">
+            <CommonDropdown
+              v-for="(value, key) in data?.responsibilities"
+              :key="key"
+              :item="key"
+              :sub-items="value"
+              :use-arrow="true"
+            />
+          </ul>
+        </div>
+      </div>
+    </template>
+  </CommonModal>
 </div>
 </template>
-<style scoped>;
-li {
-  margin: 0.5rem;
-}
+<style scoped>
+;
 .timeline-item {
   display: flex;
   align-items: center;
@@ -132,53 +87,59 @@ li {
   font-size: x-large;
   margin-right: 5px;
 }
-.description {
-  font-size: large;
-  font-weight: 400;
-}
-.career-item {
-  margin-bottom: 2rem;
-}
-
-/* responsibility */
-.responsibilities {
-  margin-top: 0.5rem;
-}
-
-.responsibility {
-  margin-bottom: 0.5rem;
-}
-
-.resp-line {
-  display: block;
-  position: relative;
-  margin-bottom: 1rem;
-}
-.level-0{
-  font-weight: 700;
-}
-.level-1{
-  font-weight: 600;
-  margin-left: 1rem;
-}
-.level-1::before {
-  content: "⇢ ";
-}
-.level-2{
-  font-weight: 500;
-  margin-left: 2rem;
-}
-.level-2::before {
-  content: "👍 ";
-}
-.level-3{
-  font-weight: 400;
-  margin-left: 3rem;
-}
-.level-3::before {
-  content: "✚ ";
-}
-.resp-line::before {
+.company:hover {
   color: var(--color-accent1);
+}
+
+/* 모달 내부 스타일 */
+.modal-career-content {
+  .career-header {
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--color-accent1);
+    padding-bottom: 16px;
+  }
+
+  .career-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 8px;
+  }
+
+  .career-subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text);
+    opacity: 0.9;
+    margin-bottom: 8px;
+  }
+
+  .career-period {
+    font-size: 1.2rem;
+    color: var(--color-accent2);
+    font-weight: 500;
+  }
+
+  .career-description {
+    margin-bottom: 24px;
+    line-height: 1.4;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    opacity: 0.9;
+  }
+
+  .career-responsibilities {
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--color-text);
+    }
+
+    .responsibilities {
+      list-style: none;
+      padding: 0;
+    }
+  }
 }
 </style>

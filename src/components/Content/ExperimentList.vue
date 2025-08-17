@@ -2,70 +2,26 @@
 import { storeToRefs } from 'pinia';
 import { LinkIcon } from '@heroicons/vue/16/solid';
 import Divider from '../Common/Divider.vue';
+import { experiments } from 'public/data/experimentList';
 
 const { experiment } = storeToRefs(useCardStore());
 
-const refExperiment = ref(null);
+const refExperiments = ref(null);
 onMounted(() => {
-  experiment.value = refExperiment.value;
-})
-
-interface Project {
-  title: string;
-  description: string;
-  techStacks?: string[];
-  used?: string[]; // 사용 라이브러리, 호스팅 툴 정리
-  link?: string;
-  gitLink?: string;
-}
-
-const projects: Project[] = [
-{
-    title: "Portfolio",
-    description: "(This site) Vue3를 사용하여 개인 포트폴리오 웹사이트를 제작하였습니다.",
-    techStacks: ["Vue.js", "Typescript"],
-    used: ["vueUse", "githubPage", "Vite"],
-    link: "https://aburger277.github.io/",
-    gitLink: "https://github.com/ABURGER277/aburger277.github.io"
-  },
-  {
-    title: "Todo-List (WindowApp)",
-    description: "Node Electron 기반 Todo-list 데스크톱 애플리케이션을 제작중입니다.",
-    techStacks: ["Electron", "Javascript"],
-    // link: "https://google.com",
-    // gitLink: "https://google.com",
-  },
-  {
-    title: "TIL",
-    description: "학습한 내용을 찾아보기 쉽게 정리해놓은 아카이브입니다.",
-    used: ["Markdown", "Github Actions"],
-    gitLink: "https://github.com/ABURGER277/TIL",
-  },
-  {
-    title: "Playground",
-    description: "Javascript, CSS 테스트를 위해 각종 실험을 기록한 아카이브입니다.",
-    techStacks: ["vanillaJS", "CSS"],
-    used: ["Vercel"],
-    link: "https://playground-bice-three.vercel.app",
-    gitLink: "https://github.com/ABURGER277/Playground",
-  },
-];
-
-onMounted(() => {
-
+  experiment.value = refExperiments.value;
 })
 
 const showDividerOnBottom = (index: number) => {
-  return index !== projects.length - 1;
+  return index !== experiments.length - 1;
 }
 </script>
 
 <template>
-<div ref="refExperiment">
+<div ref="refExperiments">
   <h1>Experiments</h1>
   <div class="card-content">
     <ul>
-      <li v-for="(project, index) in projects" :key="index">
+      <li v-for="(project, index) in experiments" :key="index">
         <h3 style="opacity: 0.8;"> [{{ project.title }}] </h3>
         <p>{{ project.description }}</p>
         <p><strong>used Skill:</strong> {{ project.techStacks?.join(", ") }}</p>
