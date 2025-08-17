@@ -71,7 +71,7 @@ ul {
 .desktop-menu-list:hover {
   cursor: pointer;
   transition: all 0.5s linear;
-  color: var(--color-accent1);
+  color: var(--color-accent2);
 }
 .empty-div {
   flex-grow: 1;
