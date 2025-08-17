@@ -113,7 +113,8 @@ defineExpose({
 .modal-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background-color: var(--color-text);
+  opacity: 0.5;
   backdrop-filter: blur(2px);
 }
 
