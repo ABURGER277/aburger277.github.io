@@ -5,7 +5,7 @@
   background-color: var(--color-background);
   padding: 10px;
   border: 2px solid var(--color-accent2);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .icon {
   min-width: 20px;

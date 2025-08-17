@@ -43,9 +43,10 @@ onMounted(() => {
     <template #content="{ data }">
       <div class="modal-career-content">
         <div class="career-header">
-          <h1 class="career-title">{{ data?.company }}</h1>
-          <p class="career-subtitle">{{ data?.position }}</p>
-          <p class="career-period">{{ data?.period }}</p>
+          <p class="career-title">{{ data?.company }}</p>
+          <span class="career-subtitle">{{ data?.position }}</span>
+          &nbsp;
+          <span class="career-period">{{ data?.period }}</span>
         </div>
 
         <div class="career-description">
@@ -78,13 +79,11 @@ onMounted(() => {
   margin-right: 2px;
 }
 .period {
-  font-weight: 700;
   font-size: xx-large;
 }
 .company {
   display: inline-block;
-  font-weight: 600;
-  font-size: x-large;
+  font-size: large;
   margin-right: 5px;
 }
 .company:hover {
@@ -101,9 +100,10 @@ onMounted(() => {
 
   .career-title {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--color-text);
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
+    margin: 0;
   }
 
   .career-subtitle {
@@ -131,7 +131,6 @@ onMounted(() => {
   .career-responsibilities {
     h2 {
       font-size: 1.8rem;
-      font-weight: 600;
       margin-bottom: 16px;
       color: var(--color-text);
     }

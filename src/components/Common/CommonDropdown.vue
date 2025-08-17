@@ -20,7 +20,7 @@ const toggleDropdown = () => {
       {{ item }}
     </div>
     <div class="dropdown-menu pointer" :class="menuVisible ? 'show' : 'hide'" @click="toggleDropdown">
-      <div v-for="subItem in subItems" :key="subItem">
+      <div v-for="subItem in subItems" :key="subItem" class="dropdown-menu-item">
         {{ subItem }}
       </div>
     </div>
@@ -61,6 +61,11 @@ const toggleDropdown = () => {
   opacity: 0;
   transition: all 0.5s linear;
   margin: 3px 0;
+  line-height: 1.4;
+}
+.dropdown-menu-item:before {
+  content: '-';
+  margin-right: 10px;
 }
 .dropdown-menu.show {
   max-height: 500px;
