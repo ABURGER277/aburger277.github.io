@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { XMarkIcon, Bars3Icon } from '@heroicons/vue/16/solid';
-import { storeToRefs } from 'pinia';
 import { UserCircleIcon, BriefcaseIcon, PuzzlePieceIcon, BookOpenIcon, SparklesIcon } from '@heroicons/vue/24/outline'
 const { setTheme, themes } = useTheme();
-const { profile, career, project, experiment } = storeToRefs(useCardStore());
+const { profileDOM, careerDOM, projectDOM, experimentDOM } = storeToRefs(useScrollStore());
 
 const mobileMenuFlag = ref(false);
 const themeListFlag = ref(false);
@@ -18,19 +17,19 @@ function showNav() { mobileMenuFlag.value = true; }
 function closeNav() { close(); }
 function showThemeList() { themeListFlag.value = true; }
 function moveToProfile() {
-  profile.value?.scrollIntoView({behavior: 'smooth'})
+  profileDOM.value?.scrollIntoView({behavior: 'smooth'})
   close();
 }
 function moveToCareer() {
-  career.value?.scrollIntoView({behavior: 'smooth'})
+  careerDOM.value?.scrollIntoView({behavior: 'smooth'})
   close();
 }
 function moveToProject() {
-  project.value?.scrollIntoView({behavior: 'smooth'})
+  projectDOM.value?.scrollIntoView({behavior: 'smooth'})
   close();
 }
 function moveToExperiment() {
-  experiment.value?.scrollIntoView({behavior: 'smooth'})
+  experimentDOM.value?.scrollIntoView({behavior: 'smooth'})
   close();
 }
 

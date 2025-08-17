@@ -4,11 +4,11 @@ import { LinkIcon } from '@heroicons/vue/16/solid';
 import Divider from '../Common/Divider.vue';
 import { experiments } from 'public/data/experimentList';
 
-const { experiment } = storeToRefs(useCardStore());
+const { experimentDOM } = storeToRefs(useScrollStore());
 
 const refExperiments = ref(null);
 onMounted(() => {
-  experiment.value = refExperiments.value;
+  experimentDOM.value = refExperiments.value;
 })
 
 const showDividerOnBottom = (index: number) => {

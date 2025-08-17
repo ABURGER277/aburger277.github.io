@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setTheme, themes } = useTheme();
 
-const { profile, career, project, experiment } = storeToRefs(useCardStore());
+const { profileDOM, careerDOM, projectDOM, experimentDOM } = storeToRefs(useScrollStore());
 
 const TOP_MENU_HEIGHT = 60 + 50; // el.height + some margin
 
@@ -11,10 +11,10 @@ const scrollToEl = (el: HTMLElement | null) => {
   window.scrollTo({ top, behavior: 'smooth' });
 }
 
-const moveToProfile = () =>     scrollToEl(profile.value);
-const moveToCareer = () =>      scrollToEl(career.value);
-const moveToProject = () =>     scrollToEl(project.value);
-const moveToExperiments = () => scrollToEl(experiment.value);
+const moveToProfile = () =>     scrollToEl(profileDOM.value);
+const moveToCareer = () =>      scrollToEl(careerDOM.value);
+const moveToProject = () =>     scrollToEl(projectDOM.value);
+const moveToExperiments = () => scrollToEl(experimentDOM.value);
 </script>
 <template>
 <nav class="desktop-menu">

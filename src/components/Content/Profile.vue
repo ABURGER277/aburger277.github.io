@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { useCardStore } from '@/stores/useCardStore';
 import profileImg from '@/assets/images/profile_image.jpg';
 import { UserCircleIcon, CalendarIcon, EnvelopeIcon, IdentificationIcon } from '@heroicons/vue/16/solid';
-const { profile } = storeToRefs(useCardStore());
+const { profileDOM } = storeToRefs(useScrollStore());
 
 interface ImageData {
   src: string;
@@ -41,7 +40,7 @@ const profileData: profile = {
 const refProfile = ref<HTMLElement | null>(null);
 
 onMounted(async() => {
-  profile.value = refProfile.value;
+  profileDOM.value = refProfile.value;
 })
 </script>
 <template>

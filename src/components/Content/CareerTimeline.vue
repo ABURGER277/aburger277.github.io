@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia';
 import { careerList, type Career } from 'public/data/careerList';
 import type CommonModal from '../Common/CommonModal.vue';
 
-const { career } = storeToRefs(useCardStore());
+const { careerDOM } = storeToRefs(useScrollStore());
 const refCareer = ref<HTMLElement | null>(null);
 const modalRef = ref<InstanceType<typeof CommonModal> | null>(null);
 const openModal = (data: Career) => {
@@ -12,7 +12,7 @@ const openModal = (data: Career) => {
 }
 
 onMounted(() => {
-  career.value = refCareer.value;
+  careerDOM.value = refCareer.value;
 })
 </script>
 <template>

@@ -3,7 +3,7 @@
 <template>
   <NavigationRoot/>
   <main id="main">
-    <Profile class="contentCard" ref="profile"/>
+    <Profile class="contentCard" ref="profileDOM"/>
     <CareerTimeline class="contentCard" ref="career"/>
     <ProjectList class="contentCard" ref="project"/>
     <ExperimentList class="contentCard" ref="experiment"/>

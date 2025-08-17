@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
-const { project } = storeToRefs(useCardStore());
+const { projectDOM } = storeToRefs(useScrollStore());
 const refProject = ref<HTMLElement | null>(null);
 
 onMounted(() => {
-  project.value = refProject.value;
+  projectDOM.value = refProject.value;
 })
 </script>
 
