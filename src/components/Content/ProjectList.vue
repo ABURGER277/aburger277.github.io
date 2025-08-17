@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-
 const { projectDOM } = storeToRefs(useScrollStore());
 const refProject = ref<HTMLElement | null>(null);
 
@@ -8,7 +6,6 @@ onMounted(() => {
   projectDOM.value = refProject.value;
 })
 </script>
-
 <template>
 <div ref="refProject">
   <h1>Project List</h1>

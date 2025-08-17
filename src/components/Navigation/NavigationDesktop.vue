@@ -19,12 +19,13 @@ const moveToExperiments = () => scrollToEl(experimentDOM.value);
 <template>
 <nav class="desktop-menu">
   <ul>
-    <li class="desktop-menu-list" @click="moveToProfile">Profile</li>
-    <li class="desktop-menu-list" @click="moveToCareer">Career</li>
-    <li class="desktop-menu-list" @click="moveToProject">Project</li>
-    <li class="desktop-menu-list" @click="moveToExperiments">Experiments</li>
+    <li class="desktop-menu-list menu-effect" @click="moveToProfile">Profile</li>
+    <li class="desktop-menu-list menu-effect" @click="moveToCareer">Career</li>
+    <li class="desktop-menu-list menu-effect" @click="moveToProject">Project</li>
+    <li class="desktop-menu-list menu-effect" @click="moveToExperiments">Experiments</li>
     <div class="empty-div"></div>
   </ul>
+  <!-- fixed theme list -->
   <div
     class="theme-container shadow"
   >
@@ -40,6 +41,7 @@ const moveToExperiments = () => scrollToEl(experimentDOM.value);
       </div>
     </div>
   </div>
+  <!-- fixed theme list -->
 </nav>
 </template>
 <style scoped>
@@ -66,23 +68,10 @@ ul {
   letter-spacing: 1.5px;
   padding: 0 40px;
 }
-/* .disable {
-  font-weight: 900;
-  font-size: large;
-  flex-grow: 0;
-  letter-spacing: 1.5px;
-  padding: 0 40px;
-  opacity: 0.5;
-} */
 .desktop-menu-list:hover {
   cursor: pointer;
-}
-.desktop-menu-list:after {
-  content: "";
-  position: absolute;
-  background-color: var(--color-accent2);
-  height: 3px;
-  width: fit-content;
+  transition: all 0.5s linear;
+  color: var(--color-accent1);
 }
 .empty-div {
   flex-grow: 1;
@@ -95,15 +84,38 @@ ul {
   flex-grow: 0;
   letter-spacing: 1.5px;
 }
-.desktop-menu-theme:hover {
-  cursor: pointer;
-}
-.icon {
-  width: 30px;
-  padding-right: 20px;
+.menu-effect:before, .menu-effect:after {
+  display: inline-block;
+  opacity: 0;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+  -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+  transition: transform 0.3s, opacity 0.2s;
 }
 
-/* theme List */
+.menu-effect:before {
+  margin-right: 10px;
+  content: '[';
+  -webkit-transform: translateX(20px);
+  -moz-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+.menu-effect:after {
+  margin-left: 10px;
+  content: ']';
+  -webkit-transform: translateX(-20px);
+  -moz-transform: translateX(-20px);
+  transform: translateX(-20px);
+}
+
+.menu-effect:hover:before, .menu-effect:hover:after, .menu-effect:focus:before, .menu-effect:focus:after {
+  opacity: 1;
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  transform: translateX(0px);
+}
+
+/* fixed theme List */
 .theme-container {
   position: fixed;
   top: 200px;
