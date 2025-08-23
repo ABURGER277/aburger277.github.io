@@ -21,7 +21,8 @@ onMounted(() => {
   <div class="card-content">
     <div v-for="(data, index) in careerList" :key="index">
       <div class="timeline-item">
-        <CalendarDateRangeIcon class="icon"/><span class="period">{{ data.period }}</span>
+        <CalendarDateRangeIcon class="icon"/>
+        <span class="period">{{ data.period }}</span>
       </div>
       <div class="timeline-item">
         <BriefcaseIcon class="icon"/>

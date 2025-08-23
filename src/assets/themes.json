@@ -29,13 +29,26 @@
     "key": "woody",
     "name": "WOODY",
     "colors": {
-      "primary": "#3B4F52",
-      "secondary": "#5C786E",
-      "accent1": "#553F33",
-      "accent2": "#553",
-      "warning": "#553",
-      "text": "rgba(255, 255, 255, 0.87)",
-      "background": "#738E57"
+      "primary": "#d6c499",
+      "secondary": "#ddcebb",
+      "accent1": "#87563b",
+      "accent2": "#BAA78A",
+      "warning": "#947351",
+      "text": "#2D3748",
+      "background": "#f0e9d4"
+    }
+  },
+  {
+    "key": "neon",
+    "name": "NEON",
+    "colors": {
+      "primary": "#0D0221",
+      "secondary": "#1B2CC1",
+      "accent1": "#FF00FF",
+      "accent2": "#00FFF7",
+      "warning": "#FFEA00",
+      "text": "#FFFFFF",
+      "background": "#000000"
     }
   }
 ]

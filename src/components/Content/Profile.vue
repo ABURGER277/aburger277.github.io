@@ -115,7 +115,6 @@ onMounted(async() => {
     gap: 20px;
   }
   .stack-icon {
-    /* background-color: var(--color-accent2); */
     border: 2px solid var(--color-accent2);
     border-radius: 10%;
     align-items: center;
@@ -128,9 +127,6 @@ onMounted(async() => {
   }
 }
 .name {
-  font-size: x-large;
-}
-.birth {
   font-size: large;
 }
 .description {
