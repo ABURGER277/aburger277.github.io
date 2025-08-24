@@ -26,6 +26,19 @@
     }
   },
   {
+    "key": "neon",
+    "name": "NEON",
+    "colors": {
+      "primary": "#0D0221",
+      "secondary": "#1B2CC1",
+      "accent1": "#FF00FF",
+      "accent2": "#00FFF7",
+      "warning": "#FFEA00",
+      "text": "#FFFFFF",
+      "background": "#000000"
+    }
+  },
+  {
     "key": "woody",
     "name": "WOODY",
     "colors": {
@@ -39,16 +52,16 @@
     }
   },
   {
-    "key": "neon",
-    "name": "NEON",
+    "key": "forest",
+    "name": "FOREST",
     "colors": {
-      "primary": "#0D0221",
-      "secondary": "#1B2CC1",
-      "accent1": "#FF00FF",
-      "accent2": "#00FFF7",
-      "warning": "#FFEA00",
-      "text": "#FFFFFF",
-      "background": "#000000"
+      "primary": "#032221",
+      "secondary": "#d0d0d0",
+      "accent1": "#AAC8C4",
+      "accent2": "#707D7D",
+      "warning": "#ff0000",
+      "text": "#F1F7F6",
+      "background": "#03624C"
     }
   }
 ]
