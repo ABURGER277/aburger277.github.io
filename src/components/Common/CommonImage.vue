@@ -9,12 +9,17 @@ const props = defineProps<{
   size?: number;
 }>();
 
+// default image는 svg로 noImage처리됨.
+const defaultSrc = computed(() => {
+  return props.fallbackSrc ?? 'https://aburger277.github.io/images/noimage.svg';
+})
+
 const isIcon = computed(() => {
   return props.src.endsWith('.svg');
 });
 
 const symbolId = computed(() => {
-  if (!isIcon.value) return '';
+  if (!isIcon.value) return '#icon-noimage';
   const iconName = props.src.split('/').pop()?.replace(/\.svg$/, '') || '';
   return `#icon-${iconName}`;
 });
@@ -43,13 +48,25 @@ const handleImageError = () => {
       `Image failed to load: ${props.src}.\n` +
       `Attempting fallback: ${props.fallbackSrc}`
     );
-    currentImageSrc.value = props.fallbackSrc;
+    currentImageSrc.value = defaultSrc.value;
+  } else {
+    console.warn(
+      `Image failed to load: ${props.src}.\n` +
+      `Attempting fallback: ${defaultSrc.value}`
+    );
+    imageLoadErrorOccurred.value = true;
   }
-  imageLoadErrorOccurred.value = true;
 };
+
 </script>
 <template>
-  <svg v-if="isIcon" aria-hidden="true" class="svg-icon" v-bind="$attrs" :style="iconStyle">
+  <svg
+    v-if="isIcon || imageLoadErrorOccurred"
+    aria-hidden="true"
+    class="svg-icon"
+    v-bind="$attrs"
+    :style="iconStyle"
+  >
     <use :href="symbolId" :fill="color" />
   </svg>
   <img
