@@ -46,7 +46,7 @@ onMounted(async() => {
 <template>
 <div ref="refProfile">
   <h1>Profile</h1>
-  <div class="card-content container-profile">
+  <div class="content-section  container-profile">
     <div class="item-profile name">
       <UserCircleIcon class="icon"/><span>{{ profileData.name }}</span>
     </div>

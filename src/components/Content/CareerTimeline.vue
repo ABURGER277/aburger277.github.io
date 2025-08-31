@@ -18,7 +18,7 @@ onMounted(() => {
 <template>
 <div ref="refCareer">
   <h1>Career Timeline</h1>
-  <div class="card-content">
+  <div class="content-section ">
     <div v-for="(data, index) in careerList" :key="index">
       <div class="timeline-item">
         <CalendarDateRangeIcon class="icon"/>

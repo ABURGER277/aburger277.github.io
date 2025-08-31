@@ -9,7 +9,7 @@ onMounted(() => {
 <template>
 <div ref="refProject">
   <h1>Project List</h1>
-  <div class="card-content">
+  <div class="content-section ">
     <h3>작성중 입니다.</h3>
     <!-- <ul>
       <li v-for="(project, index) in projects" :key="index">

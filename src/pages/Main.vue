@@ -3,10 +3,10 @@
 <template>
   <NavigationRoot/>
   <main id="main">
-    <Profile class="contentCard" ref="profileDOM"/>
-    <CareerTimeline class="contentCard" ref="career"/>
-    <ProjectList class="contentCard" ref="project"/>
-    <ExperimentList class="contentCard" ref="experiment"/>
+    <Profile class="content-container" ref="profileDOM"/>
+    <CareerTimeline class="content-container" ref="career"/>
+    <ProjectList class="content-container" ref="project"/>
+    <ExperimentList class="content-container" ref="experiment"/>
   </main>
 </template>
 <style scoped>
@@ -17,8 +17,8 @@
   #main {
     padding-top: 60px;
   }
-  .contentCard {
-    margin: 50px 20px;
+  .content-container {
+    margin: 50px 20px
   }
 }
 </style>
