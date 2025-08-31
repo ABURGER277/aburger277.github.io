@@ -11,19 +11,22 @@ export const careerList: Career[] = [
     period: "2024.04 - Present",
     company: "Kaoni, 가온아이",
     position: "Frontend Junior Developer",
-    description: "회사 그룹웨어 도메인을 사용한 PC톡 애플리케이션을 개발",
+    description: "회사 그룹웨어 도메인을 사용한 사내 대화 서비스 데스크톱 애플리케이션을 개발",
     responsibilities: {
       '톡 애플리케이션 웹 버전 개발': [
         'Nuxt3 => Vue3로 마이그레이션',
         '코드 리팩토링 및 중복 컴포넌트 정규화',
         '로컬 DB에서 API호출로 변경됨에 따라 스펙 변경 및 최적화'
       ],
-      'WPF와 Nuxt 프레임워크 위에서 신규 기능 개발 및 유지보수 작업': [
-        'Nested Popup 과 Modal ESC Handler',
-        '나간 상대 재초대',
-        '대화방 공지, 게시판',
-        '대화방별 카테고리 설정',
-        '대화방별 배경화면 설정',
+      '개발자 경험 개선 작업': [
+        '네트워크 호출 이미지, svg 아이콘 컴포넌트, png/jpg 이미지를 한 컴포넌트에서 처리 가능하도록 개선',
+        '커스텀 컨텍스트 메뉴를 빌더 패턴으로 각종 메뉴 컴포넌트 공통화',
+      ],
+      '앱 리소스 최적화 작업': [
+        '기존 리스트 컴포넌트에 Virtual Scroll 적용',
+        'svg 아이콘을 자바스크립트 컴포넌트로 최적화',
+        '검색 기능에 디바운스 적용',
+
       ],
       'Nuxt2에서 Nuxt3로 Migartion 작업': [
         '코드 리팩토링 및 중복 컴포넌트 정규화',
@@ -31,6 +34,13 @@ export const careerList: Career[] = [
         'CSS Minification',
         'Vuetify Treeshaking',
         'Nuxt2 대비 번들크기 60%감소',
+      ],
+      'WPF와 Nuxt 프레임워크 위에서 신규 기능 개발 및 유지보수 작업': [
+        'Nested Popup 과 Modal ESC Handler',
+        '나간 상대 재초대',
+        '대화방 공지, 게시판',
+        '대화방별 카테고리 설정',
+        '대화방별 배경화면 설정',
       ],
     }
   },
