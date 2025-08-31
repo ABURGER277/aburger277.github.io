@@ -121,6 +121,7 @@ defineExpose({
 .modal-container {
   position: relative;
   background-color: var(--color-primary);
+  border: 3px solid var(--color-primary);
   border-radius: 12px;
   box-shadow: 0 8px 24px var(--color-text);
   width: 90%;

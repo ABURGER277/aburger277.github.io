@@ -54,6 +54,7 @@ const moveToExperiments = () => scrollToEl(experimentDOM.value);
   height: 60px;
 
   z-index: 999;
+  transition: background-color 0.5s ease;
 }
 ul {
   display: flex;

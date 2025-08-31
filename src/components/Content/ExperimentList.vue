@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { LinkIcon } from '@heroicons/vue/16/solid';
-import Divider from '../Common/Divider.vue';
 import { experiments } from 'public/data/experimentList';
 
 const { experimentDOM } = storeToRefs(useScrollStore());
@@ -10,43 +8,29 @@ const refExperiments = ref(null);
 onMounted(() => {
   experimentDOM.value = refExperiments.value;
 })
-
-const showDividerOnBottom = (index: number) => {
-  return index !== experiments.length - 1;
-}
 </script>
 
 <template>
 <div ref="refExperiments">
   <h1>Experiments</h1>
-  <div class="card-content">
-    <ul>
-      <li v-for="(project, index) in experiments" :key="index">
-        <h3 style="opacity: 0.8;"> [{{ project.title }}] </h3>
-        <p>{{ project.description }}</p>
-        <p><strong>used Skill:</strong> {{ project.techStacks?.join(", ") }}</p>
-        <p><strong>used Tool:</strong> {{ project.used?.join(", ") }}</p>
-        <div class="link-container">
-          <LinkIcon class="icon"/>
-          <a v-if="project.link" :href="project.link" target="_blank">
-            프로젝트 보기
-          </a>
-          <a v-else class="link-disable"> no Link </a>
-          <GithubSvg class="icon"/>
-          <a v-if="project.gitLink" :href="project.gitLink" target="_blank">
-            깃허브 보기
-          </a>
-          <a v-else class="link-disable"> no Github </a>
-        </div>
-        <Divider v-if="showDividerOnBottom(index)"/>
-      </li>
-    </ul>
+  <div class="content-section ">
+    <CommonCard
+      v-for="(project, index) in experiments"
+      :key="index"
+      :imgSrc="project.imgSrc"
+      :projectLink="project.link"
+      :gitLink="project.gitLink"
+      :title="project.title"
+      :description="project.description"
+      :used="project.used"
+      :techStacks="project.techStacks"
+    />
   </div>
 </div>
 </template>
 
 <style scoped>
-.link-container {
+/* .link-container {
   display: flex;
   align-items: center;
   margin: 20px 0;
@@ -54,6 +38,11 @@ const showDividerOnBottom = (index: number) => {
     margin-left: 10px;
     margin-right: 5px;
   }
+} */
+.content-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
 }
 .link-disable {
   cursor: default;

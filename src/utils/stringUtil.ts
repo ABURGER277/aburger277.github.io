@@ -4,3 +4,7 @@ export const lineChange = (text: string): string[] => {
     .map(line => line.trim())  // 2) 앞뒤 공백 제거
     .filter(line => line);     // 3) 빈 문자열 제거
 }
+
+export const isNullOrEmpty = (text: string): boolean => {
+  return text === null || text === undefined || text === '';
+}
