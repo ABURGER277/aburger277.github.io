@@ -22,7 +22,7 @@ export const experiments: Experiment[] = [
     used: ["vueUse", "githubPage", "Vite", "GSAP", "vite-plugin-svg-icons", "css-vars"],
     link: "https://aburger277.github.io/",
     gitLink: "https://github.com/ABURGER277/aburger277.github.io",
-    imgSrc: "https://aburger277.github.io/images/portfolio.png",
+    imgSrc: "https://aburger277.github.io/images/profile_image.jpg",
   },
   {
     title: "Todo-List (WindowApp)",
