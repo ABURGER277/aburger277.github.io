@@ -36,7 +36,7 @@ const openModal = () => {
 </script>
 <template>
   <div class="common-card">
-    <CommonImage :src="imgSrc" :alt="imgSrc" loading="eager" size=100 />
+    <CommonImage :src="imgSrc" :alt="imgSrc" loading="eager" size=100 class="card-image"/>
     <h3 class="title text-ellipsis">{{ title }}</h3>
     <p class="description text-ellipsis-3">{{ description }}</p>
     <slot name="content" class="content-slot" />
@@ -98,6 +98,9 @@ const openModal = () => {
   border: 2px solid var(--color-accent2);
   border-radius: 5px;
 }
+.card-image {
+  border-radius: 5px;
+}
 .title {
   width: 100%;
   margin: 10px 0;
@@ -106,17 +109,23 @@ const openModal = () => {
   width: 100%;
   flex-grow: 1;
 }
-.modal-description {
-  flex-grow: 1;
-  white-space: pre-line;
-  padding: 5px;
-  border: 2px solid var(--color-accent2);
-  border-radius: 5px;
-  line-height: 1.5;
-}
-.modal-image {
-  align-self: center;
-  justify-self: center;
+.modal-content {
+  display: flex;
+  flex-direction: column;
+
+  .modal-description {
+    flex-grow: 1;
+    white-space: pre-line;
+    padding: 5px;
+    border: 2px solid var(--color-accent2);
+    border-radius: 5px;
+    line-height: 1.5;
+  }
+  .modal-image {
+    align-self: center;
+    justify-self: center;
+    border-radius: 5px;
+  }
 }
 .content-slot {
   flex-grow: 1;

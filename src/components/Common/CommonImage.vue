@@ -32,6 +32,14 @@ const iconStyle = computed(() => {
   };
 });
 
+const imageStyle = computed(() => {
+  if (!props.size) return {};
+  return {
+    height: `${props.size}px`,
+    width: 'auto'
+  };
+});
+
 const currentImageSrc = ref('');
 const imageLoadErrorOccurred = ref(false);
 
@@ -64,7 +72,6 @@ const handleImageError = () => {
     v-if="isIcon || imageLoadErrorOccurred"
     aria-hidden="true"
     class="svg-icon"
-    v-bind="$attrs"
     :style="iconStyle"
   >
     <use :href="symbolId" :fill="color" />
@@ -72,8 +79,8 @@ const handleImageError = () => {
   <img
     v-else
     :key="`image-${props.src}`"
-    v-bind="$attrs"
     :src="currentImageSrc"
+    :style="imageStyle"
     :alt="alt"
     :loading="loading ?? 'lazy'"
     @error="handleImageError"

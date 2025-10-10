@@ -1,3 +1,4 @@
+
 export interface Experiment {
   title: string;
   description: string;
@@ -22,7 +23,7 @@ export const experiments: Experiment[] = [
     used: ["vueUse", "githubPage", "Vite", "GSAP", "vite-plugin-svg-icons", "css-vars"],
     link: "https://aburger277.github.io/",
     gitLink: "https://github.com/ABURGER277/aburger277.github.io",
-    imgSrc: "https://aburger277.github.io/images/profile_image.jpg",
+    imgSrc: "/src/assets/images/profile_image.jpg",
   },
   {
     title: "Todo-List (WindowApp)",
@@ -30,7 +31,7 @@ export const experiments: Experiment[] = [
     techStacks: ["Electron", "Javascript"],
     // link: "https://google.com",
     // gitLink: "https://google.com",
-    imgSrc: "https://aburger277.github.io/images/todo-list.png",
+    imgSrc: "/src/assets/images/todo-list.png",
   },
   {
     title: "T.I.L",
@@ -38,7 +39,7 @@ export const experiments: Experiment[] = [
       공부와 동시에 문서 정리를 위한 마크다운 문법 연습겸 마크다운으로 작성했습니다.`,
     used: ["Markdown", "Github Actions"],
     gitLink: "https://github.com/ABURGER277/TIL",
-    imgSrc: "https://aburger277.github.io/images/til.png",
+    imgSrc: "/src/assets/images/til.png",
   },
   {
     title: "Playground",
@@ -50,6 +51,6 @@ export const experiments: Experiment[] = [
     used: ["Vercel"],
     link: "https://playground-bice-three.vercel.app",
     gitLink: "https://github.com/ABURGER277/Playground",
-    imgSrc: "https://aburger277.github.io/images/playground.png",
+    imgSrc: "/src/assets/images/playground.png",
   },
 ];

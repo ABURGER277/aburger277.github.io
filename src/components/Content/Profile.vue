@@ -75,7 +75,7 @@ onMounted(async() => {
         >
           <CommonImage
             :src="`icons/${stack.toLowerCase()}.svg`"
-            :size="50"
+            :size=50
             :color="'currentColor'"
           />
         </div>
