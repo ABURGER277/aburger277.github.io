@@ -1,0 +1,76 @@
+media:
+  input: public/images
+  output: /images
+  categories: [image]
+  rename: safe
+
+settings:
+  commit:
+    identity: user
+    templates:
+      update: "content: update {path}"
+
+content:
+  - name: profile
+    label: 프로필
+    type: file
+    path: src/content/profile.json
+    format: json
+    fields:
+      - { name: name, label: 이름, type: string, required: true }
+      - { name: birth, label: 생년월일, type: string, required: true }
+      - { name: mail, label: 이메일, type: string, required: true }
+      - { name: github, label: GitHub 주소, type: string }
+      - { name: description, label: 소개, type: text }
+      - name: stacks
+        label: 기술 스택
+        type: string
+        list: true
+
+  - name: careers
+    label: 경력
+    type: file
+    path: src/content/careers.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{company} — {position}"
+    fields:
+      - { name: period, label: 기간, type: string, required: true }
+      - { name: company, label: 회사·기관, type: string, required: true }
+      - { name: position, label: 직무, type: string, required: true }
+      - { name: description, label: 설명, type: text }
+      - name: responsibilities
+        label: 주요 업무
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - { name: title, label: 업무 제목, type: string, required: true }
+          - name: items
+            label: 상세 항목
+            type: string
+            list: true
+
+  - name: experiments
+    label: 프로젝트·실험
+    type: file
+    path: src/content/experiments.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{title}"
+    fields:
+      - { name: title, label: 제목, type: string, required: true }
+      - { name: description, label: 설명, type: text, required: true }
+      - { name: techStacks, label: 기술 스택, type: string, list: true }
+      - { name: used, label: 도구·라이브러리, type: string, list: true }
+      - { name: link, label: 프로젝트 주소, type: string }
+      - { name: gitLink, label: GitHub 주소, type: string }
+      - name: imgSrc
+        label: 대표 이미지
+        type: image

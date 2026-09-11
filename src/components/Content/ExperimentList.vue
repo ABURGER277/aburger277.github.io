@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { experiments } from 'public/data/experimentList';
+import experiments from '@/content/experiments.json';
 
 const { experimentDOM } = storeToRefs(useScrollStore());
 

@@ -1,41 +1,7 @@
 <script setup lang="ts">
-import profileImg from '@/assets/images/profile_image.jpg';
+import profileData from '@/content/profile.json';
 import { UserCircleIcon, CalendarIcon, EnvelopeIcon, IdentificationIcon } from '@heroicons/vue/16/solid';
 const { profileDOM } = storeToRefs(useScrollStore());
-
-interface ImageData {
-  src: string;
-  alt: string;
-}
-interface License {
-  date: Date;
-  course: string;
-}
-interface profile {
-  name: string;
-  birth: string;
-  mail: string;
-  stacks: string[];
-  github?: string;
-  license?: License;
-  img?: ImageData;
-  description?: string;
-}
-
-const profileData: profile = {
-  name: '박수진',
-  birth: '1996. 5. 4',
-  mail: 'aburger277@gmail.com',
-  stacks: ["HTML", "CSS", "JavaScript", "TypeScript", "Vue", "Nuxt"],
-  github: 'https://github.com/ABURGER277',
-  img: {
-    src: profileImg,
-    alt: "박수진의 프로필 이미지"
-  },
-  description: `
-    안녕하세요. 나날이 발전하는 프론트엔드 개발자입니다.\r\n커스텀 인터랙트를 가진 컴포넌트를 제작하는것을 좋아해요.
-  `
-}
 
 const refProfile = ref<HTMLElement | null>(null);
 
@@ -80,9 +46,6 @@ onMounted(async() => {
           />
         </div>
       </div>
-    </div>
-    <div class="item-profile">
-      <span>{{ profileData.license }}</span>
     </div>
   </div>
 </div>

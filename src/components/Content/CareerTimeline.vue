@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { BriefcaseIcon, CalendarDateRangeIcon } from '@heroicons/vue/16/solid'
 import { storeToRefs } from 'pinia';
-import { careerList, type Career } from 'public/data/careerList';
+import careerList from '@/content/careers.json';
 import type CommonModal from '../Common/CommonModal.vue';
 
 const { careerDOM } = storeToRefs(useScrollStore());
 const refCareer = ref<HTMLElement | null>(null);
 const modalRef = ref<InstanceType<typeof CommonModal> | null>(null);
+type Career = (typeof careerList)[number];
+
 const openModal = (data: Career) => {
   modalRef.value?.open(data);
 }
@@ -57,10 +59,10 @@ onMounted(() => {
         <div class="career-responsibilities">
           <ul class="responsibilities">
             <CommonDropdown
-              v-for="(value, key) in data?.responsibilities"
-              :key="key"
-              :item="key"
-              :sub-items="value"
+              v-for="responsibility in data?.responsibilities"
+              :key="responsibility.title"
+              :item="responsibility.title"
+              :sub-items="responsibility.items"
               :use-arrow="true"
             />
           </ul>
