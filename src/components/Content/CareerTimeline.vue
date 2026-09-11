@@ -2,6 +2,7 @@
 import { BriefcaseIcon, CalendarDateRangeIcon } from '@heroicons/vue/16/solid'
 import { storeToRefs } from 'pinia';
 import careerList from '@/content/careers.json';
+import siteContent from '@/content/site.json';
 import type CommonModal from '../Common/CommonModal.vue';
 
 const { careerDOM } = storeToRefs(useScrollStore());
@@ -19,7 +20,7 @@ onMounted(() => {
 </script>
 <template>
 <div ref="refCareer">
-  <h1>Career Timeline</h1>
+  <h1>{{ siteContent.headings.career }}</h1>
   <div class="content-section ">
     <div v-for="(data, index) in careerList" :key="index">
       <div class="timeline-item">

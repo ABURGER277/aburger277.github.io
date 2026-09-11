@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import siteContent from '@/content/site.json';
 const { projectDOM } = storeToRefs(useScrollStore());
 const refProject = ref<HTMLElement | null>(null);
 
@@ -8,9 +9,9 @@ onMounted(() => {
 </script>
 <template>
 <div ref="refProject">
-  <h1>Project List</h1>
+  <h1>{{ siteContent.headings.project }}</h1>
   <div class="content-section ">
-    <h3>작성중 입니다.</h3>
+    <h3>{{ siteContent.projectPlaceholder }}</h3>
     <!-- <ul>
       <li v-for="(project, index) in projects" :key="index">
         <h3>{{ project.title }}</h3>

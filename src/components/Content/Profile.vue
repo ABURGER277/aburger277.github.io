@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import profileData from '@/content/profile.json';
+import siteContent from '@/content/site.json';
 import { UserCircleIcon, CalendarIcon, EnvelopeIcon, IdentificationIcon } from '@heroicons/vue/16/solid';
 const { profileDOM } = storeToRefs(useScrollStore());
 
@@ -11,7 +12,7 @@ onMounted(async() => {
 </script>
 <template>
 <div ref="refProfile">
-  <h1>Profile</h1>
+  <h1>{{ siteContent.headings.profile }}</h1>
   <div class="content-section  container-profile">
     <div class="item-profile name">
       <UserCircleIcon class="icon"/><span>{{ profileData.name }}</span>
@@ -26,7 +27,7 @@ onMounted(async() => {
     </div>
     <div class="item-profile">
       <GithubSvg class="icon" color="var(--color-text)" :size="20"/>
-      <a :href="profileData.github">visit My Github!</a>
+      <a :href="profileData.github">{{ siteContent.profileGithubLabel }}</a>
     </div>
     <div class="item-profile description">
       <IdentificationIcon class="icon"/><span>{{ profileData.description?.trim() }}</span>

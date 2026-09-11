@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import siteContent from '@/content/site.json';
 const { setTheme, themes } = useTheme();
 
 const { profileDOM, careerDOM, projectDOM, experimentDOM } = storeToRefs(useScrollStore());
@@ -19,10 +20,10 @@ const moveToExperiments = () => scrollToEl(experimentDOM.value);
 <template>
 <nav class="desktop-menu">
   <ul>
-    <li class="desktop-menu-list menu-effect" @click="moveToProfile">Profile</li>
-    <li class="desktop-menu-list menu-effect" @click="moveToCareer">Career</li>
-    <li class="desktop-menu-list menu-effect" @click="moveToProject">Project</li>
-    <li class="desktop-menu-list menu-effect" @click="moveToExperiments">Experiments</li>
+    <li class="desktop-menu-list menu-effect" @click="moveToProfile">{{ siteContent.navigation.profile }}</li>
+    <li class="desktop-menu-list menu-effect" @click="moveToCareer">{{ siteContent.navigation.career }}</li>
+    <li class="desktop-menu-list menu-effect" @click="moveToProject">{{ siteContent.navigation.project }}</li>
+    <li class="desktop-menu-list menu-effect" @click="moveToExperiments">{{ siteContent.navigation.experiments }}</li>
     <div class="empty-div"></div>
   </ul>
   <!-- fixed theme list -->

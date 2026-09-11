@@ -1,0 +1,41 @@
+{
+  "landing": {
+    "hero": {
+      "title": "Welcome to My Portfolio",
+      "content": "Scroll down to explore"
+    },
+    "about": {
+      "title": "About Me",
+      "content": "프론트엔드 개발자, 보다 나은 사용자 경험과 코드 개선을 위해 노력합니다."
+    },
+    "projects": {
+      "title": "Projects",
+      "content": "많은 도전은 더 많은 경험을 만든다고 생각합니다."
+    },
+    "moreButton": "더 보기 →"
+  },
+  "navigation": {
+    "profile": "Profile",
+    "career": "Career",
+    "project": "Project",
+    "experiments": "Experiments",
+    "theme": "Theme"
+  },
+  "headings": {
+    "profile": "Profile",
+    "career": "Career Timeline",
+    "project": "Project List",
+    "experiments": "Experiments"
+  },
+  "projectPlaceholder": "작성중 입니다.",
+  "profileGithubLabel": "visit My Github!",
+  "cardLabels": {
+    "open": "OPEN",
+    "projectLink": "프로젝트 보기",
+    "noProjectLink": "no Link",
+    "githubLink": "깃허브 보기",
+    "noGithubLink": "no Github",
+    "used": "Used",
+    "techStacks": "Tech Stacks"
+  }
+}

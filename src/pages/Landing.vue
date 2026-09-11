@@ -1,6 +1,7 @@
 <script setup>
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import siteContent from '@/content/site.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -8,9 +9,9 @@ const router = useRouter()
 const sections = ref([])
 
 const sectionsData = [
-  { title: 'Welcome to My Portfolio', content: 'Scroll down to explore', className: 'hero' },
-  { title: 'About Me', content: '프론트엔드 개발자, 보다 나은 사용자 경험과 코드 개선을 위해 노력합니다.', className: 'about' },
-  { title: 'Projects', content: '많은 도전은 더 많은 경험을 만든다고 생각합니다.', className: 'projects' }
+  { ...siteContent.landing.hero, className: 'hero' },
+  { ...siteContent.landing.about, className: 'about' },
+  { ...siteContent.landing.projects, className: 'projects' }
 ]
 
 const goMain = () => router.push('/main')
@@ -44,7 +45,7 @@ onMounted(() => {
     </section>
 
     <section class="more">
-      <button class="more-btn" @click="goMain">더 보기 →</button>
+      <button class="more-btn" @click="goMain">{{ siteContent.landing.moreButton }}</button>
     </section>
   </div>
 </template>

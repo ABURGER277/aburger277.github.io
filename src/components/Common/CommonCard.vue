@@ -2,6 +2,7 @@
 import { LinkIcon } from '@heroicons/vue/16/solid';
 import type CommonModal from './CommonModal.vue';
 import { isNullOrEmpty } from '@/utils/stringUtil';
+import siteContent from '@/content/site.json';
 
 const props = withDefaults(defineProps<{
   imgSrc: string;
@@ -22,10 +23,10 @@ const props = withDefaults(defineProps<{
 });
 
 const projectText = computed(() => {
-  return isNullOrEmpty(props.projectLink) ? 'no Link' : '프로젝트 보기';
+  return isNullOrEmpty(props.projectLink) ? siteContent.cardLabels.noProjectLink : siteContent.cardLabels.projectLink;
 })
 const gitText = computed(() => {
-  return isNullOrEmpty(props.gitLink) ? 'no Github' : '깃허브 보기';
+  return isNullOrEmpty(props.gitLink) ? siteContent.cardLabels.noGithubLink : siteContent.cardLabels.githubLink;
 })
 
 const modalRef = ref<InstanceType<typeof CommonModal>>();
@@ -42,7 +43,7 @@ const openModal = () => {
     <slot name="content" class="content-slot" />
     <CommonButton
       class="open-button"
-      text="OPEN"
+      :text="siteContent.cardLabels.open"
       @onClick="openModal"
     />
     <CommonModal
@@ -55,10 +56,10 @@ const openModal = () => {
           <CommonImage :src="imgSrc" :alt="imgSrc" loading="eager" size="300" class="modal-image" />
           <h3>{{ title }}</h3>
           <p v-if="used && used.length > 0">
-            Used: <span class="accent">{{ used?.join(', ') }}</span>
+            {{ siteContent.cardLabels.used }}: <span class="accent">{{ used?.join(', ') }}</span>
           </p>
           <p v-if="techStacks && techStacks.length > 0">
-            Tech Stacks: <span class="accent">{{ techStacks?.join(', ') }}</span>
+            {{ siteContent.cardLabels.techStacks }}: <span class="accent">{{ techStacks?.join(', ') }}</span>
           </p>
           <p class="modal-description">{{ description }}</p>
         </div>

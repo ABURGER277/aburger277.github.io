@@ -2,6 +2,7 @@ media:
   input: public/images
   output: /images
   categories: [image]
+  extensions: [jpg, jpeg, png, webp, gif, avif]
   rename: safe
 
 settings:
@@ -10,40 +11,59 @@ settings:
     templates:
       update: "content: update {path}"
 
+components:
+  webLink:
+    type: string
+    description: "https://로 시작하는 전체 주소를 붙여 넣으세요. 링크가 없으면 비워 두세요."
+    pattern:
+      regex: '^(https?://[^\s]+)?$'
+      message: "http:// 또는 https://로 시작하는 주소를 입력해 주세요."
+
 content:
   - name: profile
-    label: 프로필
+    label: 01 · 프로필
     type: file
     path: src/content/profile.json
     format: json
     fields:
       - { name: name, label: 이름, type: string, required: true }
-      - { name: birth, label: 생년월일, type: string, required: true }
-      - { name: mail, label: 이메일, type: string, required: true }
-      - { name: github, label: GitHub 주소, type: string }
-      - { name: description, label: 소개, type: text }
+      - { name: birth, label: 생년월일, type: string, required: true, description: "예: 1996. 5. 4" }
+      - name: mail
+        label: 연락받을 이메일
+        type: string
+        required: true
+        pattern:
+          regex: '^[^\s@]+@[^\s@]+\.[^\s@]+$'
+          message: "이메일 주소 형식을 확인해 주세요."
+      - { name: github, label: GitHub 프로필 주소, component: webLink }
+      - { name: description, label: 자기소개, type: text, description: "프로필에 표시됩니다. Enter로 줄을 나눌 수 있습니다." }
       - name: stacks
         label: 기술 스택
-        type: string
-        list: true
+        type: select
+        description: "사이트에 아이콘이 준비된 기술을 선택하세요. 여러 개를 선택할 수 있습니다."
+        options:
+          multiple: true
+          placeholder: 기술 선택
+          values: [HTML, CSS, JavaScript, TypeScript, Vue, Nuxt, React, Node, Electron, Flutter, Tailwind]
 
   - name: careers
-    label: 경력
+    label: 02 · 경력과 교육
     type: file
     path: src/content/careers.json
     format: json
     list:
       collapsible:
         collapsed: true
-        summary: "{company} — {position}"
+        summary: "{company} · {period}"
     fields:
-      - { name: period, label: 기간, type: string, required: true }
+      - { name: period, label: 근무·교육 기간, type: string, required: true, description: "예: 2024.04 - Present 또는 2023.08 - 2024.01. 회사 이름을 펼쳐 기존 내용을 수정하세요." }
       - { name: company, label: 회사·기관, type: string, required: true }
       - { name: position, label: 직무, type: string, required: true }
-      - { name: description, label: 설명, type: text }
+      - { name: description, label: 한눈에 보는 업무 소개, type: text, description: "회사에서 맡은 역할을 간단히 적으세요. 자세한 내용은 아래 주요 업무에 입력하세요." }
       - name: responsibilities
         label: 주요 업무
         type: object
+        description: "업무별로 제목을 붙이고 세부 성과를 추가하세요. 항목 순서는 사이트 표시 순서입니다."
         list:
           collapsible:
             collapsed: true
@@ -54,9 +74,10 @@ content:
             label: 상세 항목
             type: string
             list: true
+            description: "한 항목에 하나의 업무나 성과를 입력하세요."
 
   - name: experiments
-    label: 프로젝트·실험
+    label: 03 · 프로젝트·실험 카드
     type: file
     path: src/content/experiments.json
     format: json
@@ -65,12 +86,173 @@ content:
         collapsed: true
         summary: "{title}"
     fields:
-      - { name: title, label: 제목, type: string, required: true }
-      - { name: description, label: 설명, type: text, required: true }
-      - { name: techStacks, label: 기술 스택, type: string, list: true }
-      - { name: used, label: 도구·라이브러리, type: string, list: true }
-      - { name: link, label: 프로젝트 주소, type: string }
-      - { name: gitLink, label: GitHub 주소, type: string }
+      - { name: title, label: 프로젝트 이름, type: string, required: true, description: "기존 카드를 펼쳐 수정하거나 새 항목을 추가하세요. 사이트의 Experiments 영역에 표시됩니다." }
+      - { name: description, label: 프로젝트 소개, type: text, required: true, description: "무엇을 만들었는지, 맡은 역할과 성과를 적으세요. Enter로 줄을 나눌 수 있습니다." }
+      - { name: techStacks, label: 언어·프레임워크, type: string, list: true, description: "예: Vue.js, TypeScript. 한 항목에 기술 하나씩 입력하세요." }
+      - { name: used, label: 도구·라이브러리, type: string, list: true, description: "예: Vite, GSAP, GitHub Actions. 항목 순서대로 표시됩니다." }
+      - { name: link, label: 실행 중인 사이트 주소, component: webLink }
+      - { name: gitLink, label: 소스 코드 주소, component: webLink }
       - name: imgSrc
         label: 대표 이미지
         type: image
+        description: "기존 이미지를 선택하거나 새로 업로드하세요. 이미지가 없으면 비워 두어도 됩니다."
+
+  - name: "site"
+    label: "04 · 사이트 문구"
+    type: "file"
+    path: "src/content/site.json"
+    format: "json"
+    fields:
+      - name: "landing"
+        label: "첫 화면 · 랜딩"
+        type: "object"
+        fields:
+          - name: "hero"
+            label: "첫 번째 화면"
+            type: "object"
+            fields:
+              - name: "title"
+                label: "제목"
+                type: "string"
+                required: true
+                description: "기본 문구 예: Welcome to My Portfolio"
+              - name: "content"
+                label: "설명"
+                type: "text"
+                required: true
+                description: "기본 문구 예: Scroll down to explore"
+          - name: "about"
+            label: "두 번째 화면 · 소개"
+            type: "object"
+            fields:
+              - name: "title"
+                label: "제목"
+                type: "string"
+                required: true
+                description: "기본 문구 예: About Me"
+              - name: "content"
+                label: "설명"
+                type: "text"
+                required: true
+                description: "기본 문구 예: 프론트엔드 개발자, 보다 나은 사용자 경험과 코드 개선을 위해 노력합니다."
+          - name: "projects"
+            label: "세 번째 화면 · 프로젝트"
+            type: "object"
+            fields:
+              - name: "title"
+                label: "제목"
+                type: "string"
+                required: true
+                description: "기본 문구 예: Projects"
+              - name: "content"
+                label: "설명"
+                type: "text"
+                required: true
+                description: "기본 문구 예: 많은 도전은 더 많은 경험을 만든다고 생각합니다."
+          - name: "moreButton"
+            label: "더 보기 버튼"
+            type: "string"
+            required: true
+            description: "기본 문구 예: 더 보기 →"
+      - name: "navigation"
+        label: "상단·모바일 메뉴"
+        type: "object"
+        fields:
+          - name: "profile"
+            label: "프로필"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Profile"
+          - name: "career"
+            label: "경력"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Career"
+          - name: "project"
+            label: "프로젝트"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Project"
+          - name: "experiments"
+            label: "실험"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Experiments"
+          - name: "theme"
+            label: "테마"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Theme"
+      - name: "headings"
+        label: "본문 섹션 제목"
+        type: "object"
+        fields:
+          - name: "profile"
+            label: "프로필"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Profile"
+          - name: "career"
+            label: "경력"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Career Timeline"
+          - name: "project"
+            label: "프로젝트"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Project List"
+          - name: "experiments"
+            label: "실험"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Experiments"
+      - name: "projectPlaceholder"
+        label: "프로젝트 준비 안내"
+        type: "string"
+        required: true
+        description: "기본 문구 예: 작성중 입니다."
+      - name: "profileGithubLabel"
+        label: "프로필 GitHub 링크 문구"
+        type: "string"
+        required: true
+        description: "기본 문구 예: visit My Github!"
+      - name: "cardLabels"
+        label: "프로젝트 카드 · 버튼과 제목"
+        type: "object"
+        fields:
+          - name: "open"
+            label: "상세 보기 버튼"
+            type: "string"
+            required: true
+            description: "기본 문구 예: OPEN"
+          - name: "projectLink"
+            label: "프로젝트 링크"
+            type: "string"
+            required: true
+            description: "기본 문구 예: 프로젝트 보기"
+          - name: "noProjectLink"
+            label: "프로젝트 링크가 없을 때"
+            type: "string"
+            required: true
+            description: "기본 문구 예: no Link"
+          - name: "githubLink"
+            label: "GitHub 링크"
+            type: "string"
+            required: true
+            description: "기본 문구 예: 깃허브 보기"
+          - name: "noGithubLink"
+            label: "GitHub 링크가 없을 때"
+            type: "string"
+            required: true
+            description: "기본 문구 예: no Github"
+          - name: "used"
+            label: "사용 도구 제목"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Used"
+          - name: "techStacks"
+            label: "기술 스택 제목"
+            type: "string"
+            required: true
+            description: "기본 문구 예: Tech Stacks"

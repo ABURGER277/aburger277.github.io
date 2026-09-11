@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import experiments from '@/content/experiments.json';
+import siteContent from '@/content/site.json';
 
 const { experimentDOM } = storeToRefs(useScrollStore());
 
@@ -12,7 +13,7 @@ onMounted(() => {
 
 <template>
 <div ref="refExperiments">
-  <h1>Experiments</h1>
+  <h1>{{ siteContent.headings.experiments }}</h1>
   <div class="content-section ">
     <CommonCard
       v-for="(project, index) in experiments"

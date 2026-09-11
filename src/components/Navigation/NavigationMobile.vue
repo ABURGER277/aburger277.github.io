@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import siteContent from '@/content/site.json';
 import { XMarkIcon, Bars3Icon } from '@heroicons/vue/16/solid';
 import { UserCircleIcon, BriefcaseIcon, PuzzlePieceIcon, BookOpenIcon, SparklesIcon } from '@heroicons/vue/24/outline'
 const { setTheme, themes } = useTheme();
@@ -53,27 +54,27 @@ function selectTheme(themeKey: string) {
       <ul v-if="!themeListFlag">
         <li class="mobile-menu-list" @click="moveToProfile">
           <UserCircleIcon class="menu-list-icon"/>
-          Profile
+          {{ siteContent.navigation.profile }}
           <divider color="var(--color-text)"/>
         </li>
         <li class="mobile-menu-list" @click="moveToCareer">
           <BriefcaseIcon class="menu-list-icon"/>
-          Career
+          {{ siteContent.navigation.career }}
           <divider color="var(--color-text)"/>
         </li>
         <li class="mobile-menu-list" @click="moveToProject">
           <PuzzlePieceIcon class="menu-list-icon"/>
-          Project
+          {{ siteContent.navigation.project }}
           <divider color="var(--color-text)"/>
         </li>
         <li class="mobile-menu-list" @click="moveToExperiment">
           <BookOpenIcon class="menu-list-icon"/>
-          Experiments
+          {{ siteContent.navigation.experiments }}
           <divider color="var(--color-text)"/>
         </li>
         <li class="mobile-menu-list" @click="showThemeList">
           <SparklesIcon class="menu-list-icon"/>
-          Theme
+          {{ siteContent.navigation.theme }}
         </li>
       </ul>
       <transition name="fade" mode="out-in">
