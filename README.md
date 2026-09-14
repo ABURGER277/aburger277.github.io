@@ -17,5 +17,6 @@
   - Vue Router, Pinia, VueUse
 - **스타일링**: CSS
 - **애니메이션**: gsap
+- **컨텐츠관리**: PagesCMS
 - **빌드 도구**: Vite
 - **배포**: GitHub Pages 🚀
