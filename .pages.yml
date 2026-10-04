@@ -21,7 +21,7 @@ components:
 
 content:
   - name: profile
-    label: 01 · 프로필
+    label: 01 · 프로필 / 인적사항
     type: file
     path: src/content/profile.json
     format: json
@@ -47,16 +47,13 @@ content:
           values: [HTML, CSS, JavaScript, TypeScript, Vue, Nuxt, React, Node, Electron, Flutter, Tailwind]
 
   - name: careers
-    label: 02 · 경력과 교육
+    label: 02 · 경력 / 학력
     type: file
     path: src/content/careers.json
     format: json
-    list:
-      collapsible:
-        collapsed: true
-        summary: "{company} · {period}"
+    list: true
     fields:
-      - { name: period, label: 근무·교육 기간, type: string, required: true, description: "예: 2024.04 - Present 또는 2023.08 - 2024.01. 회사 이름을 펼쳐 기존 내용을 수정하세요." }
+      - { name: period, label: 근무·교육 기간, type: string, required: true, description: "예: 2024.04 - Present 또는 2023.08 - 2024.01. 기존 항목을 수정하거나 새 항목을 추가하세요." }
       - { name: company, label: 회사·기관, type: string, required: true }
       - { name: position, label: 직무, type: string, required: true }
       - { name: description, label: 한눈에 보는 업무 소개, type: text, description: "회사에서 맡은 역할을 간단히 적으세요. 자세한 내용은 아래 주요 업무에 입력하세요." }
@@ -76,17 +73,32 @@ content:
             list: true
             description: "한 항목에 하나의 업무나 성과를 입력하세요."
 
+  - name: projects
+    label: 03 · 운영 프로젝트
+    type: file
+    path: src/content/projects.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: 프로젝트 이름, type: string, required: true, description: "실제로 운영한 프로젝트의 이름을 입력하세요." }
+      - { name: description, label: 프로젝트 소개, type: text, required: true, description: "서비스의 목적, 맡은 역할과 성과를 적으세요. Enter로 줄을 나눌 수 있습니다." }
+      - { name: techStacks, label: 언어·프레임워크, type: string, list: true, description: "한 항목에 기술 하나씩 입력하세요." }
+      - { name: used, label: 도구·라이브러리, type: string, list: true, description: "한 항목에 도구 하나씩 입력하세요." }
+      - { name: link, label: 운영 중인 사이트 주소, component: webLink }
+      - { name: gitLink, label: 소스 코드 주소, component: webLink, description: "공개할 수 있는 저장소가 없으면 비워 두세요." }
+      - name: imgSrc
+        label: 대표 이미지
+        type: image
+        description: "기존 이미지를 선택하거나 새로 업로드하세요. 이미지가 없으면 비워 두어도 됩니다."
+
   - name: experiments
-    label: 03 · 프로젝트·실험 카드
+    label: 04 · 실험 카드
     type: file
     path: src/content/experiments.json
     format: json
-    list:
-      collapsible:
-        collapsed: true
-        summary: "{title}"
+    list: true
     fields:
-      - { name: title, label: 프로젝트 이름, type: string, required: true, description: "기존 카드를 펼쳐 수정하거나 새 항목을 추가하세요. 사이트의 Experiments 영역에 표시됩니다." }
+      - { name: title, label: 프로젝트 이름, type: string, required: true, description: "기존 항목을 수정하거나 새 항목을 추가하세요. 사이트의 Experiments 영역에 표시됩니다." }
       - { name: description, label: 프로젝트 소개, type: text, required: true, description: "무엇을 만들었는지, 맡은 역할과 성과를 적으세요. Enter로 줄을 나눌 수 있습니다." }
       - { name: techStacks, label: 언어·프레임워크, type: string, list: true, description: "예: Vue.js, TypeScript. 한 항목에 기술 하나씩 입력하세요." }
       - { name: used, label: 도구·라이브러리, type: string, list: true, description: "예: Vite, GSAP, GitHub Actions. 항목 순서대로 표시됩니다." }
@@ -98,7 +110,7 @@ content:
         description: "기존 이미지를 선택하거나 새로 업로드하세요. 이미지가 없으면 비워 두어도 됩니다."
 
   - name: "site"
-    label: "04 · 사이트 문구"
+    label: "05 · 사이트 문구 관리"
     type: "file"
     path: "src/content/site.json"
     format: "json"

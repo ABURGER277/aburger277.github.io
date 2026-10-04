@@ -1,5 +1,18 @@
 <script setup lang="ts">
 import siteContent from '@/content/site.json';
+import projectData from '@/content/projects.json';
+
+type Project = {
+  title: string;
+  description: string;
+  techStacks?: string[];
+  used?: string[];
+  link?: string;
+  gitLink?: string;
+  imgSrc?: string;
+};
+
+const projects: Project[] = projectData;
 const { projectDOM } = storeToRefs(useScrollStore());
 const refProject = ref<HTMLElement | null>(null);
 
@@ -10,26 +23,29 @@ onMounted(() => {
 <template>
 <div ref="refProject">
   <h1>{{ siteContent.headings.project }}</h1>
-  <div class="content-section ">
+  <div v-if="projects.length" class="content-section">
+    <CommonCard
+      v-for="(project, index) in projects"
+      :key="index"
+      :imgSrc="project.imgSrc ?? ''"
+      :projectLink="project.link ?? ''"
+      :gitLink="project.gitLink ?? ''"
+      :title="project.title"
+      :description="project.description"
+      :used="project.used"
+      :techStacks="project.techStacks"
+    />
+  </div>
+  <div v-else class="content-section">
     <h3>{{ siteContent.projectPlaceholder }}</h3>
-    <!-- <ul>
-      <li v-for="(project, index) in projects" :key="index">
-        <h3>{{ project.title }}</h3>
-        <p>{{ project.description }}</p>
-        <p>
-          사용 기술: {{ project.techStack.join(", ") }}
-        </p>
-        <a v-if="project.link" :href="project.link" target="_blank">
-          프로젝트 보기
-        </a>
-        <a :href="project.gitLink" target="_blank">
-          깃허브 보기
-        </a>
-      </li>
-    </ul> -->
   </div>
 </div>
 </template>
 
 <style scoped>
+.content-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
 </style>
