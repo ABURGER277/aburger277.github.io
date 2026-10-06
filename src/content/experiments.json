@@ -38,7 +38,7 @@
   },
   {
     "title": "Playground",
-    "description": "평소에 헷갈리는 Javascript, CSS 테스트를 위해 각종 실험을 기록한 웹 아카이브입니다.\nVercel에 배포하여 깃허브 페이지가 아닌 외부에서 접근 가능하도록 구현.\nflex, grid, transition, animation 테스트 진행.\nVanillaJS로 라우팅 및 이벤트 처리.",
+    "description": "평소에 헷갈리는 Javascript, CSS 테스트를 위해 각종 실험을 기록한 아카이브 입니다.\n재사용성이 높다 판단되는 CSS를 보관하는 용도로도 사용하고 있습니다.\n간단한 사이트라 VanillaJS로 라우팅 및 이벤트 처리를 해두었습니다.",
     "techStacks": [
       "vanillaJS",
       "CSS",
